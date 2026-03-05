@@ -6,11 +6,7 @@ import { Sparkles, Menu, X } from "lucide-react"
 import { useI18n } from "@/lib/i18n"
 import { LanguageSwitcher } from "./language-switcher"
 import {
-  ImageMegaMenu,
-  VideoMegaMenu,
-  AudioMegaMenu,
-  EditMegaMenu,
-  CharacterMegaMenu,
+  ImageMegaMenu, VideoMegaMenu, AudioMegaMenu, EditMegaMenu, CharacterMegaMenu,
 } from "./mega-menu"
 
 type NavItem = {
@@ -22,33 +18,21 @@ type NavItem = {
 }
 
 function NavLink({
-  item,
-  isActive,
-  onHover,
-  onLeave,
+  item, isActive, onHover, onLeave,
 }: {
-  item: NavItem
-  isActive: boolean
-  onHover: () => void
-  onLeave: () => void
+  item: NavItem; isActive: boolean; onHover: () => void; onLeave: () => void
 }) {
   return (
-    <div
-      className="relative"
-      onMouseEnter={onHover}
-      onMouseLeave={onLeave}
-    >
+    <div className="relative" onMouseEnter={onHover} onMouseLeave={onLeave}>
       <Link
         href={item.href}
-        className={`flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
-          isActive
-            ? "text-foreground"
-            : "text-muted-foreground hover:text-foreground"
+        className={`flex items-center gap-1.5 rounded-lg px-3 py-2 text-[13px] font-medium tracking-wide transition-all ${
+          isActive ? "text-[#D4A853]" : "text-[#f0ece4]/50 hover:text-[#f0ece4]/80"
         }`}
       >
         {item.label}
         {item.badge && (
-          <span className="rounded bg-gradient-to-r from-[#14b8a6] to-[#3b82f6] px-1.5 py-0.5 text-[10px] font-bold uppercase text-white">
+          <span className="rounded bg-[#D4A853]/15 px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wider text-[#D4A853]">
             {item.badge}
           </span>
         )}
@@ -74,67 +58,31 @@ export function Header() {
   }
 
   useEffect(() => {
-    return () => {
-      if (timeoutRef.current) clearTimeout(timeoutRef.current)
-    }
+    return () => { if (timeoutRef.current) clearTimeout(timeoutRef.current) }
   }, [])
 
   const b = t("badges.new")
   const navItems: NavItem[] = [
-    {
-      key: "image",
-      label: t("nav.image"),
-      href: "/image",
-      badge: b,
-      megaMenu: <ImageMegaMenu />,
-    },
-    {
-      key: "video",
-      label: t("nav.video"),
-      href: "/create/video",
-      megaMenu: <VideoMegaMenu />,
-    },
-    {
-      key: "audio",
-      label: t("nav.audio"),
-      href: "#",
-      badge: b,
-      megaMenu: <AudioMegaMenu />,
-    },
-    {
-      key: "edit",
-      label: t("nav.edit"),
-      href: "#",
-      megaMenu: <EditMegaMenu />,
-    },
-    {
-      key: "character",
-      label: t("nav.character"),
-      href: "#",
-      megaMenu: <CharacterMegaMenu />,
-    },
-    {
-      key: "moodboard",
-      label: t("nav.moodboard"),
-      href: "#",
-      badge: b,
-    },
-    {
-      key: "cinema",
-      label: t("nav.cinemaStudio"),
-      href: "#",
-    },
+    { key: "image", label: t("nav.image"), href: "/image", badge: b, megaMenu: <ImageMegaMenu /> },
+    { key: "video", label: t("nav.video"), href: "/create/video", megaMenu: <VideoMegaMenu /> },
+    { key: "audio", label: t("nav.audio"), href: "#", badge: b, megaMenu: <AudioMegaMenu /> },
+    { key: "edit", label: t("nav.edit"), href: "#", megaMenu: <EditMegaMenu /> },
+    { key: "character", label: t("nav.character"), href: "#", megaMenu: <CharacterMegaMenu /> },
+    { key: "moodboard", label: t("nav.moodboard"), href: "#", badge: b },
+    { key: "cinema", label: t("nav.cinemaStudio"), href: "#" },
   ]
 
   return (
-    <header className="sticky top-0 z-40 border-b border-white/5 bg-[#0a0f1a]/80 backdrop-blur-xl">
-      <div className="mx-auto flex h-16 max-w-[1400px] items-center justify-between px-4">
+    <header className="sticky top-0 z-40 border-b border-[#D4A853]/5 bg-[#050507]/80 backdrop-blur-2xl">
+      <div className="mx-auto flex h-16 max-w-[1440px] items-center justify-between px-6">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-[#14b8a6] to-[#0d9488]">
-            <Sparkles className="h-4.5 w-4.5 text-white" />
+        <Link href="/" className="group flex items-center gap-2.5">
+          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-[#D4A853] to-[#B8922F] shadow-lg shadow-[#D4A853]/10 transition-shadow group-hover:shadow-[#D4A853]/25">
+            <Sparkles className="h-4.5 w-4.5 text-[#050507]" />
           </div>
-          <span className="text-lg font-bold text-foreground">SoulGen</span>
+          <span className="text-lg font-bold tracking-tight text-foreground">
+            Soul<span className="text-[#D4A853]">Gen</span>
+          </span>
         </Link>
 
         {/* Desktop Nav */}
@@ -151,23 +99,23 @@ export function Header() {
         </nav>
 
         {/* Right side */}
-        <div className="hidden items-center gap-2 lg:flex">
+        <div className="hidden items-center gap-3 lg:flex">
           <LanguageSwitcher />
           <Link
             href="/pricing"
-            className="rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+            className="rounded-lg px-3 py-2 text-[13px] font-medium text-[#f0ece4]/50 transition-colors hover:text-[#f0ece4]/80"
           >
             {t("nav.pricing")}
           </Link>
           <Link
             href="/auth/sign-in"
-            className="rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+            className="rounded-lg px-3 py-2 text-[13px] font-medium text-[#f0ece4]/50 transition-colors hover:text-[#f0ece4]/80"
           >
             {t("nav.login")}
           </Link>
           <Link
             href="/auth/sign-in"
-            className="rounded-xl bg-gradient-to-r from-[#14b8a6] to-[#0d9488] px-4 py-2 text-sm font-semibold text-white transition-all hover:scale-[1.02] hover:shadow-lg hover:shadow-[#14b8a6]/25"
+            className="rounded-xl bg-gradient-to-r from-[#D4A853] to-[#B8922F] px-5 py-2 text-[13px] font-semibold text-[#050507] transition-all hover:shadow-lg hover:shadow-[#D4A853]/20"
           >
             {t("nav.signUp")}
           </Link>
@@ -185,18 +133,18 @@ export function Header() {
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div className="animate-fade-in border-t border-white/5 bg-[#0a0f1a]/95 px-4 pb-6 pt-4 backdrop-blur-xl lg:hidden">
+        <div className="animate-fade-in border-t border-[#D4A853]/5 bg-[#050507]/95 px-4 pb-6 pt-4 backdrop-blur-2xl lg:hidden">
           <nav className="flex flex-col gap-1">
             {navItems.map((item) => (
               <Link
                 key={item.key}
                 href={item.href}
-                className="flex items-center gap-2 rounded-lg px-3 py-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-white/5 hover:text-foreground"
+                className="flex items-center gap-2 rounded-lg px-3 py-2.5 text-sm font-medium text-[#f0ece4]/50 transition-colors hover:bg-[#D4A853]/5 hover:text-foreground"
                 onClick={() => setMobileOpen(false)}
               >
                 {item.label}
                 {item.badge && (
-                  <span className="rounded bg-gradient-to-r from-[#14b8a6] to-[#3b82f6] px-1.5 py-0.5 text-[10px] font-bold text-white">
+                  <span className="rounded bg-[#D4A853]/15 px-1.5 py-0.5 text-[9px] font-bold uppercase text-[#D4A853]">
                     {item.badge}
                   </span>
                 )}
@@ -204,7 +152,7 @@ export function Header() {
             ))}
             <Link
               href="/pricing"
-              className="rounded-lg px-3 py-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-white/5 hover:text-foreground"
+              className="rounded-lg px-3 py-2.5 text-sm font-medium text-[#f0ece4]/50 transition-colors hover:bg-[#D4A853]/5 hover:text-foreground"
               onClick={() => setMobileOpen(false)}
             >
               {t("nav.pricing")}
@@ -214,7 +162,7 @@ export function Header() {
             <LanguageSwitcher />
             <Link
               href="/auth/sign-in"
-              className="rounded-xl bg-gradient-to-r from-[#14b8a6] to-[#0d9488] px-4 py-2.5 text-center text-sm font-semibold text-white"
+              className="rounded-xl bg-gradient-to-r from-[#D4A853] to-[#B8922F] px-4 py-2.5 text-center text-sm font-semibold text-[#050507]"
               onClick={() => setMobileOpen(false)}
             >
               {t("nav.signUp")}

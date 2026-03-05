@@ -12,21 +12,26 @@ export function PromoBanner() {
   if (!visible) return null
 
   return (
-    <div className="relative flex items-center justify-center gap-2 bg-gradient-to-r from-[#14b8a6] via-[#3b82f6] to-[#f97316] px-4 py-2 text-sm font-medium text-white">
-      <Sparkles className="h-4 w-4" />
-      <span>{t("promo.text")}</span>
-      <Link
-        href="/create/video"
-        className="ml-2 rounded-full bg-white/20 px-3 py-0.5 text-xs font-semibold backdrop-blur-sm transition-colors hover:bg-white/30"
-      >
-        {t("promo.cta")}
-      </Link>
+    <div className="relative flex items-center justify-center gap-3 bg-gradient-to-r from-[#D4A853]/10 via-[#D4A853]/20 to-[#00D4FF]/10 px-4 py-2.5 text-sm backdrop-blur-sm">
+      <div className="absolute inset-0 bg-[#050507]/60" />
+      <div className="relative flex items-center gap-3">
+        <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#D4A853]/20">
+          <Sparkles className="h-3 w-3 text-[#D4A853]" />
+        </span>
+        <span className="font-medium text-[#f0ece4]/80">{t("promo.text")}</span>
+        <Link
+          href="/create/video"
+          className="rounded-full border border-[#D4A853]/30 bg-[#D4A853]/10 px-4 py-1 text-xs font-semibold text-[#D4A853] transition-all hover:bg-[#D4A853]/20 hover:border-[#D4A853]/50"
+        >
+          {t("promo.cta")}
+        </Link>
+      </div>
       <button
         onClick={() => setVisible(false)}
-        className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full p-0.5 text-white/70 transition-colors hover:text-white"
+        className="relative rounded-full p-1 text-[#f0ece4]/30 transition-colors hover:text-[#f0ece4]/60"
         aria-label="Close banner"
       >
-        <X className="h-4 w-4" />
+        <X className="h-3.5 w-3.5" />
       </button>
     </div>
   )

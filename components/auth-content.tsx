@@ -1,26 +1,20 @@
 "use client"
 
 import { useState } from "react"
+import Image from "next/image"
 import Link from "next/link"
 import { useI18n } from "@/lib/i18n"
 import { Sparkles, Video, Mic2, ImageIcon, ArrowRight } from "lucide-react"
 
-function SocialButton({
-  label,
-  icon,
-}: {
-  label: string
-  icon: React.ReactNode
-}) {
+function SocialButton({ label, icon }: { label: string; icon: React.ReactNode }) {
   return (
-    <button className="flex w-full items-center justify-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-medium text-foreground transition-colors hover:bg-white/10">
+    <button className="flex w-full items-center justify-center gap-3 rounded-xl border border-[#D4A853]/10 bg-[#D4A853]/3 px-4 py-3.5 text-sm font-medium text-foreground transition-all hover:border-[#D4A853]/20 hover:bg-[#D4A853]/5">
       {icon}
       {label}
     </button>
   )
 }
 
-// Simple SVG icons for social providers
 function GoogleIcon() {
   return (
     <svg className="h-5 w-5" viewBox="0 0 24 24">
@@ -64,76 +58,96 @@ export function AuthContent() {
   ]
 
   return (
-    <div className="flex min-h-[calc(100vh-4rem)] items-center justify-center px-4 py-12">
-      <div className="w-full max-w-md">
-        {/* Logo */}
-        <div className="mb-8 flex justify-center">
-          <div className="flex items-center gap-2">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-[#14b8a6] to-[#0d9488]">
-              <Sparkles className="h-5 w-5 text-white" />
-            </div>
-            <span className="text-xl font-bold text-foreground">SoulGen</span>
+    <div className="flex min-h-[calc(100vh-4rem)]">
+      {/* Left cinematic panel */}
+      <div className="relative hidden w-1/2 lg:block">
+        <Image
+          src="/images/gallery-1.jpg"
+          alt="AI generated art"
+          fill
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#050507] via-[#050507]/30 to-[#050507]" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#050507] via-transparent to-[#050507]/50" />
+
+        {/* Overlay content */}
+        <div className="relative flex h-full flex-col justify-end p-12">
+          <div className="flex flex-col gap-4">
+            {features.map((f) => {
+              const Icon = f.icon
+              return (
+                <div key={f.title} className="flex items-start gap-4 rounded-2xl border border-[#D4A853]/10 bg-[#050507]/60 p-4 backdrop-blur-xl">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-[#D4A853]/15 bg-[#D4A853]/5">
+                    <Icon className="h-5 w-5 text-[#D4A853]" />
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-semibold text-foreground">{f.title}</h4>
+                    <p className="mt-0.5 text-xs text-muted-foreground leading-relaxed">{f.desc}</p>
+                  </div>
+                </div>
+              )
+            })}
           </div>
         </div>
+      </div>
 
-        {/* Card */}
-        <div className="rounded-2xl border border-white/10 bg-[#111827]/50 p-8 backdrop-blur-xl">
-          <h1 className="mb-6 text-center text-2xl font-bold text-foreground">
-            {t("authPage.signIn")}
-          </h1>
-
-          <div className="flex flex-col gap-3">
-            <SocialButton label={t("authPage.continueWithGoogle")} icon={<GoogleIcon />} />
-            <SocialButton label={t("authPage.continueWithApple")} icon={<AppleIcon />} />
-            <SocialButton label={t("authPage.continueWithMicrosoft")} icon={<MicrosoftIcon />} />
-          </div>
-
-          <div className="my-6 flex items-center gap-3">
-            <div className="h-px flex-1 bg-white/10" />
-            <span className="text-xs font-medium text-muted-foreground">{t("authPage.or")}</span>
-            <div className="h-px flex-1 bg-white/10" />
-          </div>
-
-          <div className="flex flex-col gap-3">
-            <label className="text-sm font-medium text-foreground">
-              {t("authPage.email")}
-            </label>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder={t("authPage.emailPlaceholder")}
-              className="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-[#14b8a6]/50 focus:outline-none"
-            />
-            <button className="flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#14b8a6] to-[#0d9488] px-4 py-3 text-sm font-semibold text-white transition-all hover:scale-[1.02] hover:shadow-lg hover:shadow-[#14b8a6]/25">
-              {t("authPage.continue")}
-              <ArrowRight className="h-4 w-4" />
-            </button>
-          </div>
-
-          <p className="mt-4 text-center text-sm text-muted-foreground">
-            {t("authPage.noAccount")}{" "}
-            <Link href="/auth/sign-in" className="font-medium text-[#14b8a6] hover:underline">
-              {t("authPage.signUp")}
-            </Link>
-          </p>
-        </div>
-
-        {/* Feature cards */}
-        <div className="mt-8 grid grid-cols-3 gap-3">
-          {features.map((f) => {
-            const Icon = f.icon
-            return (
-              <div
-                key={f.title}
-                className="rounded-xl border border-white/5 bg-[#111827]/30 p-3 text-center"
-              >
-                <Icon className="mx-auto mb-2 h-6 w-6 text-[#14b8a6]" />
-                <h4 className="text-xs font-semibold text-foreground">{f.title}</h4>
-                <p className="mt-0.5 text-[10px] text-muted-foreground leading-relaxed">{f.desc}</p>
+      {/* Right form panel */}
+      <div className="flex flex-1 items-center justify-center px-6 py-12">
+        <div className="w-full max-w-md">
+          {/* Logo */}
+          <div className="mb-10 flex justify-center">
+            <div className="flex items-center gap-2.5">
+              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-[#D4A853] to-[#B8922F] shadow-lg shadow-[#D4A853]/15">
+                <Sparkles className="h-5 w-5 text-[#050507]" />
               </div>
-            )
-          })}
+              <span className="text-xl font-bold tracking-tight text-foreground">
+                Soul<span className="text-[#D4A853]">Gen</span>
+              </span>
+            </div>
+          </div>
+
+          {/* Card */}
+          <div className="rounded-2xl border border-[#D4A853]/10 bg-gradient-to-b from-[#0c0c10] to-[#050507] p-8 backdrop-blur-2xl">
+            <h1 className="mb-8 text-center font-serif text-2xl font-bold text-foreground">
+              {t("authPage.signIn")}
+            </h1>
+
+            <div className="flex flex-col gap-3">
+              <SocialButton label={t("authPage.continueWithGoogle")} icon={<GoogleIcon />} />
+              <SocialButton label={t("authPage.continueWithApple")} icon={<AppleIcon />} />
+              <SocialButton label={t("authPage.continueWithMicrosoft")} icon={<MicrosoftIcon />} />
+            </div>
+
+            <div className="my-8 flex items-center gap-4">
+              <div className="h-px flex-1 bg-gradient-to-r from-transparent via-[#D4A853]/15 to-transparent" />
+              <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-[#D4A853]/40">{t("authPage.or")}</span>
+              <div className="h-px flex-1 bg-gradient-to-r from-transparent via-[#D4A853]/15 to-transparent" />
+            </div>
+
+            <div className="flex flex-col gap-4">
+              <label className="text-[11px] font-bold uppercase tracking-[0.15em] text-[#D4A853]/50">
+                {t("authPage.email")}
+              </label>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder={t("authPage.emailPlaceholder")}
+                className="rounded-xl border border-[#D4A853]/10 bg-[#D4A853]/3 px-4 py-3.5 text-sm text-foreground placeholder:text-muted-foreground focus:border-[#D4A853]/30 focus:outline-none transition-colors"
+              />
+              <button className="flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#D4A853] to-[#B8922F] px-4 py-3.5 text-sm font-semibold text-[#050507] shadow-lg shadow-[#D4A853]/15 transition-all hover:shadow-[#D4A853]/25">
+                {t("authPage.continue")}
+                <ArrowRight className="h-4 w-4" />
+              </button>
+            </div>
+
+            <p className="mt-6 text-center text-sm text-muted-foreground">
+              {t("authPage.noAccount")}{" "}
+              <Link href="/auth/sign-in" className="font-semibold text-[#D4A853] hover:underline">
+                {t("authPage.signUp")}
+              </Link>
+            </p>
+          </div>
         </div>
       </div>
     </div>
