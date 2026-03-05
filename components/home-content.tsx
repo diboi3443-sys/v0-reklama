@@ -7,47 +7,30 @@ import {
 } from "lucide-react"
 import { useI18n } from "@/lib/i18n"
 
-/* ─── Hero ─── */
+/* ---- Hero ---- */
 function HeroSection() {
   const { t } = useI18n()
   return (
     <section className="relative overflow-hidden py-28 md:py-40">
-      {/* Background image */}
       <div className="absolute inset-0">
-        <Image
-          src="/images/hero-bg.jpg"
-          alt=""
-          fill
-          className="object-cover opacity-30"
-          priority
-        />
+        <Image src="/images/hero-bg.jpg" alt="" fill className="object-cover opacity-30" priority />
         <div className="absolute inset-0 bg-gradient-to-b from-[#050507] via-[#050507]/60 to-[#050507]" />
       </div>
-
-      {/* Animated orbs */}
       <div className="pointer-events-none absolute inset-0">
         <div className="animate-float absolute left-1/4 top-1/3 h-[500px] w-[500px] rounded-full bg-[#D4A853]/4 blur-[150px]" />
         <div className="animate-float-delayed absolute right-1/4 top-1/2 h-[400px] w-[400px] rounded-full bg-[#00D4FF]/4 blur-[120px]" />
       </div>
-
       <div className="relative mx-auto max-w-5xl px-6 text-center">
-        {/* Badge */}
         <div className="mb-8 inline-flex items-center gap-2.5 rounded-full border border-[#D4A853]/15 bg-[#D4A853]/5 px-5 py-2 backdrop-blur-sm">
           <span className="flex h-2 w-2 rounded-full bg-[#D4A853] animate-pulse-glow" />
           <span className="text-[13px] font-medium text-[#D4A853]/80">Cinema Studio 2.0</span>
         </div>
-
-        {/* Title */}
         <h1 className="text-balance font-serif text-5xl font-bold leading-[1.1] tracking-tight md:text-7xl lg:text-8xl">
           <span className="text-gold-gradient">{t("hero.title")}</span>
         </h1>
-
-        {/* Subtitle */}
         <p className="mx-auto mt-8 max-w-2xl text-pretty text-lg leading-relaxed text-[#f0ece4]/40 md:text-xl">
           {t("hero.subtitle")}
         </p>
-
-        {/* CTAs */}
         <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <Link
             href="/image"
@@ -64,8 +47,6 @@ function HeroSection() {
             {t("hero.ctaSecondary")}
           </Link>
         </div>
-
-        {/* Stats bar */}
         <div className="mx-auto mt-16 flex max-w-xl items-center justify-center gap-8 md:gap-12">
           {[
             { value: "10M+", label: "Creators" },
@@ -83,48 +64,44 @@ function HeroSection() {
   )
 }
 
-/* ─── Tools ─── */
-const toolIcons = { image: ImageIcon, video: Video, audio: Mic2, edit: Pencil, soulId: User }
-const toolHrefs = ["/image", "/create/video", "#", "#", "#"]
+/* ---- Tools ---- */
+const toolData = [
+  { key: "image" as const, icon: ImageIcon, img: "/images/tool-image.jpg", href: "/image" },
+  { key: "video" as const, icon: Video, img: "/images/tool-video.jpg", href: "/create/video" },
+  { key: "audio" as const, icon: Mic2, img: "/images/tool-audio.jpg", href: "#" },
+  { key: "edit" as const, icon: Pencil, img: "/images/tool-edit.jpg", href: "#" },
+  { key: "soulId" as const, icon: User, img: "/images/tool-character.jpg", href: "#" },
+]
 
 function ToolsSection() {
   const { t } = useI18n()
-  const tools = [
-    { key: "image" as const, title: t("tools.image"), desc: t("tools.imageDesc") },
-    { key: "video" as const, title: t("tools.video"), desc: t("tools.videoDesc") },
-    { key: "audio" as const, title: t("tools.audio"), desc: t("tools.audioDesc") },
-    { key: "edit" as const, title: t("tools.edit"), desc: t("tools.editDesc") },
-    { key: "soulId" as const, title: t("tools.soulId"), desc: t("tools.soulIdDesc") },
-  ]
-
   return (
     <section className="py-24 md:py-32">
       <div className="mx-auto max-w-[1440px] px-6">
         <div className="mb-16 text-center">
           <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.2em] text-[#D4A853]/50">Creative Suite</p>
-          <h2 className="font-serif text-3xl font-bold text-foreground md:text-5xl text-balance">
-            {t("tools.title")}
-          </h2>
+          <h2 className="font-serif text-3xl font-bold text-foreground md:text-5xl text-balance">{t("tools.title")}</h2>
           <p className="mx-auto mt-4 max-w-xl text-muted-foreground text-pretty leading-relaxed">{t("tools.subtitle")}</p>
         </div>
-
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
-          {tools.map((tool, i) => {
-            const Icon = toolIcons[tool.key]
+          {toolData.map((tool) => {
+            const Icon = tool.icon
             return (
               <Link
                 key={tool.key}
-                href={toolHrefs[i]}
-                className="glass-card glass-card-hover group relative overflow-hidden rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1"
+                href={tool.href}
+                className="glass-card glass-card-hover group relative overflow-hidden rounded-2xl transition-all duration-300 hover:-translate-y-1"
               >
-                {/* Hover glow */}
-                <div className="absolute inset-0 bg-gradient-to-b from-[#D4A853]/0 to-[#D4A853]/0 transition-all duration-300 group-hover:from-[#D4A853]/3 group-hover:to-transparent" />
-                <div className="relative">
-                  <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl border border-[#D4A853]/10 bg-[#D4A853]/5 text-[#D4A853] transition-colors group-hover:border-[#D4A853]/20 group-hover:bg-[#D4A853]/10">
-                    <Icon className="h-6 w-6" />
+                <div className="relative aspect-[4/3] w-full overflow-hidden">
+                  <Image src={tool.img} alt={t(`tools.${tool.key}`)} fill className="object-cover transition-transform duration-500 group-hover:scale-110" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#050507] via-[#050507]/40 to-transparent" />
+                </div>
+                <div className="relative p-5">
+                  <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl border border-[#D4A853]/15 bg-[#D4A853]/10 text-[#D4A853]">
+                    <Icon className="h-5 w-5" />
                   </div>
-                  <h3 className="text-lg font-semibold text-foreground">{tool.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{tool.desc}</p>
+                  <h3 className="text-lg font-semibold text-foreground">{t(`tools.${tool.key}`)}</h3>
+                  <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{t(`tools.${tool.key}Desc`)}</p>
                 </div>
               </Link>
             )
@@ -135,14 +112,14 @@ function ToolsSection() {
   )
 }
 
-/* ─── Models ─── */
+/* ---- Models ---- */
 const featuredModels = [
-  { name: "Kling 3.0", tag: "Video", color: "gold" },
-  { name: "Nano Banana 2", tag: "Image", color: "cyan" },
-  { name: "Sora 2", tag: "Video", color: "gold" },
-  { name: "Soul 2.0", tag: "Character", color: "cyan" },
-  { name: "Google Veo 3.1", tag: "Video", color: "gold" },
-  { name: "Seedream 5.0", tag: "Image", color: "cyan" },
+  { name: "Kling 3.0", tag: "Video", color: "gold" as const, img: "/images/model-kling.jpg" },
+  { name: "Nano Banana 2", tag: "Image", color: "cyan" as const, img: "/images/model-nano.jpg" },
+  { name: "Sora 2", tag: "Video", color: "gold" as const, img: "/images/model-sora.jpg" },
+  { name: "Soul 2.0", tag: "Character", color: "cyan" as const, img: "/images/model-soul.jpg" },
+  { name: "Google Veo 3.1", tag: "Video", color: "gold" as const, img: "/images/model-veo.jpg" },
+  { name: "Seedream 5.0", tag: "Image", color: "cyan" as const, img: "/images/model-seedream.jpg" },
 ]
 
 function ModelsSection() {
@@ -155,37 +132,25 @@ function ModelsSection() {
           <h2 className="font-serif text-3xl font-bold text-foreground md:text-5xl text-balance">{t("models.title")}</h2>
           <p className="mx-auto mt-4 max-w-xl text-muted-foreground text-pretty leading-relaxed">{t("models.subtitle")}</p>
         </div>
-
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {featuredModels.map((model) => (
             <div
               key={model.name}
               className="glass-card glass-card-hover group relative overflow-hidden rounded-2xl transition-all duration-300 hover:-translate-y-1"
             >
-              <div className="aspect-video w-full bg-gradient-to-br from-[#0c0c10] to-[#161619]">
-                <div className="flex h-full items-center justify-center">
-                  <div className={`rounded-full p-5 ${
-                    model.color === "gold"
-                      ? "bg-[#D4A853]/10 text-[#D4A853]"
-                      : "bg-[#00D4FF]/10 text-[#00D4FF]"
-                  }`}>
-                    {model.tag === "Video" ? <Video className="h-8 w-8" /> :
-                     model.tag === "Character" ? <User className="h-8 w-8" /> :
-                     <ImageIcon className="h-8 w-8" />}
-                  </div>
-                </div>
+              <div className="relative aspect-video w-full overflow-hidden">
+                <Image src={model.img} alt={model.name} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#050507]/80 via-[#050507]/20 to-transparent" />
+                <span className={`absolute right-3 top-3 rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-wider backdrop-blur-sm ${
+                  model.color === "gold"
+                    ? "bg-[#D4A853]/20 text-[#D4A853] border border-[#D4A853]/20"
+                    : "bg-[#00D4FF]/20 text-[#00D4FF] border border-[#00D4FF]/20"
+                }`}>
+                  {model.tag}
+                </span>
               </div>
               <div className="p-5">
-                <div className="flex items-center justify-between">
-                  <h3 className="font-semibold text-foreground">{model.name}</h3>
-                  <span className={`rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-wider ${
-                    model.color === "gold"
-                      ? "bg-[#D4A853]/10 text-[#D4A853]"
-                      : "bg-[#00D4FF]/10 text-[#00D4FF]"
-                  }`}>
-                    {model.tag}
-                  </span>
-                </div>
+                <h3 className="text-lg font-semibold text-foreground">{model.name}</h3>
               </div>
             </div>
           ))}
@@ -195,7 +160,7 @@ function ModelsSection() {
   )
 }
 
-/* ─── Gallery ─── */
+/* ---- Gallery ---- */
 function GallerySection() {
   const { t } = useI18n()
   const images = [
@@ -203,6 +168,10 @@ function GallerySection() {
     "/images/gallery-2.jpg",
     "/images/gallery-3.jpg",
     "/images/gallery-4.jpg",
+    "/images/gallery-5.jpg",
+    "/images/gallery-6.jpg",
+    "/images/gallery-7.jpg",
+    "/images/gallery-8.jpg",
   ]
 
   return (
@@ -213,31 +182,14 @@ function GallerySection() {
           <h2 className="font-serif text-3xl font-bold text-foreground md:text-5xl text-balance">{t("gallery.title")}</h2>
           <p className="mx-auto mt-4 max-w-xl text-muted-foreground text-pretty leading-relaxed">{t("gallery.subtitle")}</p>
         </div>
-
         <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
           {images.map((src, i) => (
             <div
               key={i}
               className="group relative aspect-square overflow-hidden rounded-2xl border border-[#D4A853]/5 transition-all duration-300 hover:border-[#D4A853]/15"
             >
-              <Image
-                src={src}
-                alt={`AI generated artwork ${i + 1}`}
-                fill
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
-              />
+              <Image src={src} alt={`AI generated artwork ${i + 1}`} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
               <div className="absolute inset-0 bg-gradient-to-t from-[#050507]/60 via-transparent to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
-            </div>
-          ))}
-          {/* Extra placeholder slots */}
-          {Array.from({ length: 4 }).map((_, i) => (
-            <div
-              key={`placeholder-${i}`}
-              className="glass-card group aspect-square overflow-hidden rounded-2xl"
-            >
-              <div className="flex h-full items-center justify-center">
-                <Sparkles className="h-6 w-6 text-[#D4A853]/10" />
-              </div>
             </div>
           ))}
         </div>
@@ -246,19 +198,19 @@ function GallerySection() {
   )
 }
 
-/* ─── CTA ─── */
+/* ---- CTA ---- */
 function CtaSection() {
   const { t } = useI18n()
   return (
     <section className="py-24 md:py-32">
       <div className="mx-auto max-w-4xl px-6">
-        <div className="relative overflow-hidden rounded-3xl border border-[#D4A853]/10 bg-gradient-to-b from-[#0c0c10] to-[#050507] px-8 py-16 text-center md:px-16 md:py-24">
-          {/* Background glow */}
+        <div className="relative overflow-hidden rounded-3xl border border-[#D4A853]/10">
+          <Image src="/images/hero-bg.jpg" alt="" fill className="object-cover opacity-20" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0c0c10]/90 to-[#050507]/95" />
           <div className="pointer-events-none absolute inset-0">
             <div className="absolute left-1/2 top-0 h-[300px] w-[400px] -translate-x-1/2 rounded-full bg-[#D4A853]/5 blur-[100px]" />
           </div>
-
-          <div className="relative">
+          <div className="relative px-8 py-16 text-center md:px-16 md:py-24">
             <div className="mx-auto mb-8 flex h-16 w-16 items-center justify-center rounded-2xl border border-[#D4A853]/10 bg-[#D4A853]/5">
               <Zap className="h-8 w-8 text-[#D4A853]" />
             </div>

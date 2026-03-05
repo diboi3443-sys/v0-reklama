@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import Image from "next/image"
 import { useI18n } from "@/lib/i18n"
 import { Upload, Video, Plus, Search, Play, Sparkles, TrendingUp, Zap } from "lucide-react"
 
@@ -16,18 +17,18 @@ const presetCategories = [
 ]
 
 const presets = [
-  { name: "Zoom In", badge: "TOP", variant: "gold" as const },
-  { name: "Dolly Out", badge: "TOP", variant: "gold" as const },
-  { name: "Orbit Left", badge: null, variant: null },
-  { name: "Crane Up", badge: "MIXED", variant: "cyan" as const },
-  { name: "Pan Right", badge: null, variant: null },
-  { name: "Tilt Down", badge: "TOP", variant: "gold" as const },
-  { name: "Steadicam", badge: null, variant: null },
-  { name: "FPV Drone", badge: "MIXED", variant: "cyan" as const },
-  { name: "Whip Pan", badge: null, variant: null },
-  { name: "Push In", badge: "TOP", variant: "gold" as const },
-  { name: "Tracking Shot", badge: null, variant: null },
-  { name: "Vertigo Effect", badge: "MIXED", variant: "cyan" as const },
+  { name: "Zoom In", badge: "TOP", variant: "gold" as const, img: "/images/gallery-2.jpg" },
+  { name: "Dolly Out", badge: "TOP", variant: "gold" as const, img: "/images/gallery-3.jpg" },
+  { name: "Orbit Left", badge: null, variant: null, img: "/images/gallery-4.jpg" },
+  { name: "Crane Up", badge: "MIXED", variant: "cyan" as const, img: "/images/model-sora.jpg" },
+  { name: "Pan Right", badge: null, variant: null, img: "/images/gallery-5.jpg" },
+  { name: "Tilt Down", badge: "TOP", variant: "gold" as const, img: "/images/gallery-6.jpg" },
+  { name: "Steadicam", badge: null, variant: null, img: "/images/model-veo.jpg" },
+  { name: "FPV Drone", badge: "MIXED", variant: "cyan" as const, img: "/images/gallery-7.jpg" },
+  { name: "Whip Pan", badge: null, variant: null, img: "/images/gallery-8.jpg" },
+  { name: "Push In", badge: "TOP", variant: "gold" as const, img: "/images/model-kling.jpg" },
+  { name: "Tracking Shot", badge: null, variant: null, img: "/images/gallery-1.jpg" },
+  { name: "Vertigo Effect", badge: "MIXED", variant: "cyan" as const, img: "/images/preset-thumb.jpg" },
 ]
 
 function PillButton({
@@ -63,13 +64,17 @@ function CreateTab() {
       {/* Left panel */}
       <div className="flex flex-col gap-6">
         <div className="grid grid-cols-2 gap-4">
-          {[t("videoPage.startFrame"), t("videoPage.endFrame")].map((label) => (
-            <div key={label}>
-              <label className="mb-2 block text-[11px] font-bold uppercase tracking-[0.15em] text-[#D4A853]/50">{label}</label>
-              <div className="glass-card glass-card-hover flex aspect-video cursor-pointer items-center justify-center rounded-xl transition-all">
-                <div className="flex flex-col items-center gap-1.5 text-muted-foreground">
-                  <Upload className="h-6 w-6 text-[#D4A853]/20" />
-                  <span className="text-xs text-[#D4A853]/30">Upload</span>
+          {[
+            { label: t("videoPage.startFrame"), img: "/images/gallery-1.jpg" },
+            { label: t("videoPage.endFrame"), img: "/images/gallery-3.jpg" },
+          ].map((frame) => (
+            <div key={frame.label}>
+              <label className="mb-2 block text-[11px] font-bold uppercase tracking-[0.15em] text-[#D4A853]/50">{frame.label}</label>
+              <div className="group relative aspect-video cursor-pointer overflow-hidden rounded-xl border border-[#D4A853]/10 transition-all hover:border-[#D4A853]/20">
+                <Image src={frame.img} alt={frame.label} fill className="object-cover opacity-60 transition-all group-hover:opacity-80 group-hover:scale-105" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#050507]/60 to-transparent" />
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <Upload className="h-6 w-6 text-[#f0ece4]/40" />
                 </div>
               </div>
             </div>
@@ -90,9 +95,13 @@ function CreateTab() {
 
       {/* Right panel */}
       <div className="flex flex-col gap-6">
-        <div className="glass-card flex aspect-video items-center justify-center rounded-2xl">
-          <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-[#D4A853]/10 bg-[#D4A853]/5">
-            <Play className="h-8 w-8 text-[#D4A853]/30" />
+        <div className="group relative aspect-video overflow-hidden rounded-2xl border border-[#D4A853]/10">
+          <Image src="/images/model-kling.jpg" alt="Video preview" fill className="object-cover opacity-50" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#050507]/60 via-transparent to-[#050507]/30" />
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-[#f0ece4]/10 bg-[#050507]/50 backdrop-blur-xl transition-all group-hover:scale-110">
+              <Play className="h-8 w-8 text-[#D4A853]/60" />
+            </div>
           </div>
         </div>
         <textarea
@@ -150,18 +159,25 @@ function CreateTab() {
 
 function EditTab() {
   const { t } = useI18n()
+  const editImages = ["/images/gallery-5.jpg", "/images/gallery-6.jpg", "/images/gallery-7.jpg", "/images/gallery-8.jpg"]
+
   return (
     <div className="flex flex-col gap-6">
-      <div className="glass-card glass-card-hover flex aspect-video max-h-[400px] cursor-pointer items-center justify-center rounded-2xl transition-all">
-        <div className="flex flex-col items-center gap-3 text-muted-foreground">
-          <Upload className="h-12 w-12 text-[#D4A853]/20" />
-          <span className="text-sm text-[#D4A853]/30">{t("videoPage.uploadVideo")}</span>
+      <div className="group relative aspect-video max-h-[400px] cursor-pointer overflow-hidden rounded-2xl border border-[#D4A853]/10 transition-all hover:border-[#D4A853]/20">
+        <Image src="/images/model-sora.jpg" alt="Upload area" fill className="object-cover opacity-40 transition-all group-hover:opacity-60" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#050507]/60 to-transparent" />
+        <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 text-muted-foreground">
+          <Upload className="h-12 w-12 text-[#D4A853]/30" />
+          <span className="text-sm font-medium text-[#f0ece4]/50">{t("videoPage.uploadVideo")}</span>
         </div>
       </div>
       <div className="grid grid-cols-4 gap-3">
-        {Array.from({ length: 4 }).map((_, i) => (
-          <div key={i} className="glass-card glass-card-hover flex aspect-square cursor-pointer items-center justify-center rounded-xl transition-all">
-            <Plus className="h-5 w-5 text-[#D4A853]/20" />
+        {editImages.map((img, i) => (
+          <div key={i} className="group relative aspect-square cursor-pointer overflow-hidden rounded-xl border border-[#D4A853]/10 transition-all hover:border-[#D4A853]/20">
+            <Image src={img} alt={`Reference ${i + 1}`} fill className="object-cover opacity-60 transition-all group-hover:opacity-80" />
+            <div className="absolute inset-0 flex items-center justify-center">
+              <Plus className="h-5 w-5 text-[#f0ece4]/30" />
+            </div>
           </div>
         ))}
       </div>
@@ -219,19 +235,23 @@ function MotionTab() {
             key={preset.name}
             className="glass-card glass-card-hover group relative cursor-pointer overflow-hidden rounded-xl transition-all duration-300 hover:-translate-y-0.5"
           >
-            <div className="aspect-video bg-gradient-to-br from-[#0c0c10] to-[#161619]">
-              <div className="flex h-full items-center justify-center">
-                <Video className="h-8 w-8 text-[#D4A853]/10" />
-              </div>
+            <div className="relative aspect-video overflow-hidden">
+              <Image src={preset.img} alt={preset.name} fill className="object-cover transition-transform duration-500 group-hover:scale-110" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#050507]/60 via-transparent to-transparent" />
               {preset.badge && (
-                <span className={`absolute right-2 top-2 rounded px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wider ${
+                <span className={`absolute right-2 top-2 rounded px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wider backdrop-blur-sm ${
                   preset.variant === "gold"
-                    ? "bg-[#D4A853]/15 text-[#D4A853]"
-                    : "bg-[#00D4FF]/15 text-[#00D4FF]"
+                    ? "bg-[#D4A853]/20 text-[#D4A853] border border-[#D4A853]/20"
+                    : "bg-[#00D4FF]/20 text-[#00D4FF] border border-[#00D4FF]/20"
                 }`}>
                   {preset.badge}
                 </span>
               )}
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity group-hover:opacity-100">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#050507]/50 backdrop-blur-sm">
+                  <Play className="h-5 w-5 text-[#f0ece4]" />
+                </div>
+              </div>
             </div>
             <div className="p-2.5">
               <span className="text-xs font-medium text-foreground">{preset.name}</span>
@@ -255,7 +275,6 @@ export function VideoContent() {
 
   return (
     <div className="mx-auto max-w-[1200px] px-6 py-10">
-      {/* Tabs */}
       <div className="mb-10 flex gap-1 rounded-xl border border-[#D4A853]/5 bg-[#0c0c10]/50 p-1">
         {tabs.map((tab) => (
           <button
