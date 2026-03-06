@@ -215,7 +215,7 @@ export function CharacterStudioContent({ characterId }: { characterId: string })
             aspect === "9:16" ? "aspect-[9/16] max-h-[70vh]" : aspect === "1:1" ? "aspect-square max-h-[60vh]" : "aspect-video max-h-[50vh]"
           } w-full max-w-2xl`}
         >
-          <Image src="/images/hero-bg.jpg" alt="Video preview" fill className="object-cover opacity-30" />
+          <Image src="/images/hero-bg.jpg" alt="Video preview" fill className="object-cover opacity-30" priority />
           <div className="absolute inset-0 flex flex-col items-center justify-center gap-4">
             <div className="flex h-20 w-20 items-center justify-center rounded-2xl border border-[#D4A853]/10 bg-[#050507]/50 backdrop-blur-xl">
               <Play className="h-10 w-10 text-[#D4A853]/40" />

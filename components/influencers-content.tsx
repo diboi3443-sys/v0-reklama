@@ -53,7 +53,7 @@ function FilterButton({
   )
 }
 
-function InfluencerCard({ influencer }: { influencer: Influencer }) {
+function InfluencerCard({ influencer, priority = false }: { influencer: Influencer; priority?: boolean }) {
   const { t } = useI18n()
   const TypeIcon = typeIcons[influencer.type]
 
@@ -68,6 +68,7 @@ function InfluencerCard({ influencer }: { influencer: Influencer }) {
           alt={influencer.name}
           fill
           className="object-cover transition-transform duration-500 group-hover:scale-105"
+          priority={priority}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#050507] via-[#050507]/20 to-transparent" />
         
@@ -139,8 +140,8 @@ export function InfluencersContent() {
       {/* Grid */}
       {filteredInfluencers.length > 0 ? (
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
-          {filteredInfluencers.map((influencer) => (
-            <InfluencerCard key={influencer.id} influencer={influencer} />
+          {filteredInfluencers.map((influencer, index) => (
+            <InfluencerCard key={influencer.id} influencer={influencer} priority={index < 6} />
           ))}
           
           {/* Create new card */}
