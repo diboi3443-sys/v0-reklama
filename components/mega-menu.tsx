@@ -213,12 +213,12 @@ export function CharacterMegaMenu() {
   const b = t("badges.new")
 
   const items: MegaItem[] = [
-    { icon: <User className="h-5 w-5" />, title: t("megaCharacter.soulId"), desc: t("megaCharacter.soulIdDesc"), href: "#" },
-    { icon: <Sparkles className="h-5 w-5" />, title: t("megaCharacter.soul2"), desc: t("megaCharacter.soul2Desc"), badge: badgeNew(b), href: "#" },
-    { icon: <Users className="h-5 w-5" />, title: t("megaCharacter.aiInfluencer"), desc: t("megaCharacter.aiInfluencerDesc"), href: "#" },
-    { icon: <Move className="h-5 w-5" />, title: t("megaCharacter.motionTransfer"), desc: t("megaCharacter.motionTransferDesc"), href: "#" },
-    { icon: <Camera className="h-5 w-5" />, title: t("megaCharacter.photodump"), desc: t("megaCharacter.photodumpDesc"), href: "#" },
-    { icon: <Wand2 className="h-5 w-5" />, title: t("megaCharacter.charGenerator"), desc: t("megaCharacter.charGeneratorDesc"), href: "#" },
+    { icon: <User className="h-5 w-5" />, title: t("megaCharacter.soulId"), desc: t("megaCharacter.soulIdDesc"), href: "/influencers" },
+    { icon: <Sparkles className="h-5 w-5" />, title: t("megaCharacter.soul2"), desc: t("megaCharacter.soul2Desc"), badge: badgeNew(b), href: "/influencers" },
+    { icon: <Users className="h-5 w-5" />, title: t("megaCharacter.aiInfluencer"), desc: t("megaCharacter.aiInfluencerDesc"), badge: badgeNew(b), href: "/influencers" },
+    { icon: <Move className="h-5 w-5" />, title: t("megaCharacter.motionTransfer"), desc: t("megaCharacter.motionTransferDesc"), href: "/influencers" },
+    { icon: <Camera className="h-5 w-5" />, title: t("megaCharacter.photodump"), desc: t("megaCharacter.photodumpDesc"), href: "/influencers" },
+    { icon: <Wand2 className="h-5 w-5" />, title: t("megaCharacter.charGenerator"), desc: t("megaCharacter.charGeneratorDesc"), href: "/influencers/create" },
   ]
 
   return (

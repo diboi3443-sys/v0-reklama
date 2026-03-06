@@ -67,7 +67,7 @@ export function Header() {
     { key: "video", label: t("nav.video"), href: "/create/video", megaMenu: <VideoMegaMenu /> },
     { key: "audio", label: t("nav.audio"), href: "#", badge: b, megaMenu: <AudioMegaMenu /> },
     { key: "edit", label: t("nav.edit"), href: "#", megaMenu: <EditMegaMenu /> },
-    { key: "character", label: t("nav.character"), href: "#", megaMenu: <CharacterMegaMenu /> },
+    { key: "character", label: t("nav.character"), href: "/influencers", megaMenu: <CharacterMegaMenu /> },
     { key: "moodboard", label: t("nav.moodboard"), href: "#", badge: b },
     { key: "cinema", label: t("nav.cinemaStudio"), href: "#" },
   ]
