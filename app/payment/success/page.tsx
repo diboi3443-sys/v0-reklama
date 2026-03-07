@@ -1,11 +1,14 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, Suspense } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
 import { AppShell } from '@/components/app-shell'
 import { CheckCircle, Loader2 } from 'lucide-react'
 
-export default function PaymentSuccessPage() {
+// Force dynamic rendering
+export const dynamic = 'force-dynamic'
+
+function PaymentSuccessContent() {
   const searchParams = useSearchParams()
   const router = useRouter()
   const [status, setStatus] = useState<'loading' | 'success' | 'error'>('loading')
@@ -90,5 +93,19 @@ export default function PaymentSuccessPage() {
         </div>
       </div>
     </AppShell>
+  )
+}
+
+export default function PaymentSuccessPage() {
+  return (
+    <Suspense fallback={
+      <AppShell>
+        <div className="flex min-h-[60vh] items-center justify-center">
+          <Loader2 className="h-8 w-8 animate-spin text-[#D4A853]" />
+        </div>
+      </AppShell>
+    }>
+      <PaymentSuccessContent />
+    </Suspense>
   )
 }
