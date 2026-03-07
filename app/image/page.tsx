@@ -1,10 +1,15 @@
 import { AppShell } from "@/components/app-shell"
-import { ImageContent } from "@/components/image-content"
+import { ImageContentV2 } from "@/components/image-content-v2"
+
+export const metadata = {
+  title: "Image Generator - v0-reklama",
+  description: "Generate stunning images with AI",
+}
 
 export default function ImagePage() {
   return (
     <AppShell>
-      <ImageContent />
+      <ImageContentV2 />
     </AppShell>
   )
 }

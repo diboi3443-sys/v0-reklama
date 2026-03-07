@@ -1,0 +1,6 @@
+// Add to app/layout.tsx inside <body>:
+
+import { Toaster } from 'sonner'
+
+// Inside <body> tag, after {children}:
+<Toaster position="top-right" theme="dark" />

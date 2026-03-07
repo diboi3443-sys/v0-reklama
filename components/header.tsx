@@ -5,6 +5,7 @@ import Link from "next/link"
 import { Sparkles, Menu, X } from "lucide-react"
 import { useI18n } from "@/lib/i18n"
 import { LanguageSwitcher } from "./language-switcher"
+import { UserMenu } from "./user-menu"
 import {
   ImageMegaMenu, VideoMegaMenu, AudioMegaMenu, EditMegaMenu, CharacterMegaMenu,
 } from "./mega-menu"
@@ -65,6 +66,7 @@ export function Header() {
   const navItems: NavItem[] = [
     { key: "image", label: t("nav.image"), href: "/image", badge: b, megaMenu: <ImageMegaMenu /> },
     { key: "video", label: t("nav.video"), href: "/create/video", megaMenu: <VideoMegaMenu /> },
+    { key: "presets", label: "Presets", href: "/presets", badge: "400+" },
     { key: "audio", label: t("nav.audio"), href: "#", badge: b, megaMenu: <AudioMegaMenu /> },
     { key: "edit", label: t("nav.edit"), href: "#", megaMenu: <EditMegaMenu /> },
     { key: "character", label: t("nav.character"), href: "/influencers", megaMenu: <CharacterMegaMenu /> },
@@ -107,18 +109,7 @@ export function Header() {
           >
             {t("nav.pricing")}
           </Link>
-          <Link
-            href="/auth/sign-in"
-            className="rounded-lg px-3 py-2 text-[13px] font-medium text-[#f0ece4]/50 transition-colors hover:text-[#f0ece4]/80"
-          >
-            {t("nav.login")}
-          </Link>
-          <Link
-            href="/auth/sign-in"
-            className="rounded-xl bg-gradient-to-r from-[#D4A853] to-[#B8922F] px-5 py-2 text-[13px] font-semibold text-[#050507] transition-all hover:shadow-lg hover:shadow-[#D4A853]/20"
-          >
-            {t("nav.signUp")}
-          </Link>
+          <UserMenu />
         </div>
 
         {/* Mobile toggle */}

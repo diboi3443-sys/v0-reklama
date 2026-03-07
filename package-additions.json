@@ -1,0 +1,28 @@
+{
+  "scripts": {
+    "test:infra": "node scripts/test-infrastructure.js",
+    "db:deploy": "node database/deploy.js",
+    "db:seed": "node database/seed-presets.js",
+    "worker:image": "node workers/image-worker.js",
+    "worker:video": "node workers/video-worker.js",
+    "workers:dev": "concurrently \"npm:worker:image\" \"npm:worker:video\"",
+    "postinstall": "prisma generate || true"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.1",
+    "next-auth": "^4.24.7",
+    "bullmq": "^5.15.0",
+    "ioredis": "^5.4.1",
+    "bcryptjs": "^2.4.3",
+    "@openrouter/ai": "^1.0.0",
+    "openai": "^4.63.0",
+    "minio": "^8.0.2",
+    "dotenv": "^16.4.5",
+    "prisma": "^5.20.0",
+    "@prisma/client": "^5.20.0",
+    "swr": "^2.2.5"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  }
+}
