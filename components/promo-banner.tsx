@@ -2,12 +2,10 @@
 
 import { useState } from "react"
 import { X, Sparkles } from "lucide-react"
-import { useI18n } from "@/lib/i18n"
 import Link from "next/link"
 
 export function PromoBanner() {
   const [visible, setVisible] = useState(true)
-  const { t } = useI18n()
 
   if (!visible) return null
 
@@ -18,12 +16,14 @@ export function PromoBanner() {
         <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#D4A853]/20">
           <Sparkles className="h-3 w-3 text-[#D4A853]" />
         </span>
-        <span className="font-medium text-[#f0ece4]/80">{t("promo.text")}</span>
+        <span className="font-medium text-[#f0ece4]/80">
+          🎁 Новые пресеты для видео — создавайте кинематографичный контент за 1 клик
+        </span>
         <Link
-          href="/create/video"
+          href="/presets"
           className="rounded-full border border-[#D4A853]/30 bg-[#D4A853]/10 px-4 py-1 text-xs font-semibold text-[#D4A853] transition-all hover:bg-[#D4A853]/20 hover:border-[#D4A853]/50"
         >
-          {t("promo.cta")}
+          Попробовать
         </Link>
       </div>
       <button

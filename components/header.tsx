@@ -3,8 +3,8 @@
 import { useState, useRef, useEffect } from "react"
 import Link from "next/link"
 import { Sparkles, Menu, X } from "lucide-react"
-import { useI18n } from "@/lib/i18n"
-import { LanguageSwitcher } from "./language-switcher"
+// import { useI18n } from "@/lib/i18n"
+// import { LanguageSwitcher } from "./language-switcher"
 import { UserMenu } from "./user-menu"
 import {
   ImageMegaMenu, VideoMegaMenu, AudioMegaMenu, EditMegaMenu, CharacterMegaMenu,
