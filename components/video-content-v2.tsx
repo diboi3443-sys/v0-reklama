@@ -10,9 +10,9 @@ import { toast } from "sonner"
 import useSWR from "swr"
 
 const modes = [
-  { id: "text-to-video", label: "Text → Video", description: "Generate from prompt" },
-  { id: "image-to-video", label: "Image → Video", description: "Animate image" },
-  { id: "motion-control", label: "Motion Control", description: "Transfer motion" },
+  { id: "text-to-video", label: "Текст → Видео", description: "Generate from prompt" },
+  { id: "image-to-video", label: "Картинка → Видео", description: "Animate image" },
+  { id: "motion-control", label: "Управление движением", description: "Transfer motion" },
 ]
 
 const durations = [3, 5, 8, 10, 15]

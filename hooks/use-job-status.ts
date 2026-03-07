@@ -3,14 +3,21 @@ import useSWR from 'swr'
 import { api, JobStatus } from '@/lib/api-client'
 
 export function useJobStatus(jobId: string | null) {
-  const [isPolling, setIsPolling] = useState(true)
+  const [isPolling, setIsPolling] = useState(false)
+
+  // Start polling when jobId is set
+  useEffect(() => {
+    if (jobId) {
+      setIsPolling(true)
+    }
+  }, [jobId])
 
   // SWR with auto-refresh for polling
   const { data, error, mutate } = useSWR<JobStatus>(
     jobId && isPolling ? `/generate/status/${jobId}` : null,
     () => api.getJobStatus(jobId!),
     {
-      refreshInterval: isPolling ? 2000 : 0, // Poll every 2 seconds
+      refreshInterval: isPolling && jobId ? 2000 : 0, // Poll every 2 seconds
       revalidateOnFocus: false,
     }
   )
@@ -24,7 +31,7 @@ export function useJobStatus(jobId: string | null) {
 
   return {
     job: data,
-    isLoading: !data && !error,
+    isLoading: !!jobId && !data && !error, // Only loading if we have a jobId
     isError: !!error,
     error,
     refresh: mutate,

@@ -34,7 +34,7 @@ export function ImageContentV2() {
 
   const handleGenerate = async () => {
     if (!prompt.trim()) {
-      toast.error("Please enter a prompt")
+      toast.error("Пожалуйста, введите промпт")
       return
     }
 
@@ -57,11 +57,11 @@ export function ImageContentV2() {
       })
 
       setCurrentJobId(response.jobId)
-      toast.success("Generation started!")
+      toast.success("Генерация началась!")
 
     } catch (error: any) {
       console.error("Generation error:", error)
-      toast.error(error.response?.data?.error || "Failed to start generation")
+      toast.error(error.response?.data?.error || "Не удалось начать генерацию")
       setIsGenerating(false)
     }
   }
@@ -87,12 +87,12 @@ export function ImageContentV2() {
           {/* Prompt */}
           <div>
             <label className="mb-2 block text-[11px] font-bold uppercase tracking-[0.15em] text-[#D4A853]/50">
-              Prompt
+              Промпт
             </label>
             <textarea
               value={prompt}
               onChange={(e) => setPrompt(e.target.value)}
-              placeholder="A beautiful sunset over mountains..."
+              placeholder="Красивый закат над горами..."
               rows={4}
               disabled={isProcessing}
               className="w-full resize-none rounded-xl border border-[#D4A853]/10 bg-[#D4A853]/3 px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-[#D4A853]/30 focus:outline-none disabled:opacity-50"
@@ -102,12 +102,12 @@ export function ImageContentV2() {
           {/* Negative Prompt */}
           <div>
             <label className="mb-2 block text-[11px] font-bold uppercase tracking-[0.15em] text-[#D4A853]/50">
-              Negative Prompt (Optional)
+              Негативный промпт (опционально)
             </label>
             <textarea
               value={negativePrompt}
               onChange={(e) => setNegativePrompt(e.target.value)}
-              placeholder="blurry, low quality..."
+              placeholder="размытое, низкое качество..."
               rows={2}
               disabled={isProcessing}
               className="w-full resize-none rounded-xl border border-[#D4A853]/10 bg-[#D4A853]/3 px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-[#D4A853]/30 focus:outline-none disabled:opacity-50"
@@ -117,7 +117,7 @@ export function ImageContentV2() {
           {/* Model Selection */}
           <div>
             <label className="mb-2 block text-[11px] font-bold uppercase tracking-[0.15em] text-[#D4A853]/50">
-              Model
+              Модель
             </label>
             <select
               value={selectedModel}
@@ -133,10 +133,10 @@ export function ImageContentV2() {
             </select>
           </div>
 
-          {/* Aspect Ratio */}
+          {/* Соотношение сторон */}
           <div>
             <label className="mb-2 block text-[11px] font-bold uppercase tracking-[0.15em] text-[#D4A853]/50">
-              Aspect Ratio
+              Соотношение сторон
             </label>
             <div className="flex flex-wrap gap-2">
               {aspects.map((a) => (
@@ -172,8 +172,8 @@ export function ImageContentV2() {
               className="w-full accent-[#D4A853] disabled:opacity-50"
             />
             <div className="mt-1 flex justify-between text-[10px] text-muted-foreground">
-              <span>Fast</span>
-              <span>Best</span>
+              <span>Быстро</span>
+              <span>Лучшее</span>
             </div>
           </div>
 
