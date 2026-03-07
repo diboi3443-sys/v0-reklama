@@ -59,8 +59,8 @@ function MotionButton({
       onClick={onClick}
       className={`flex flex-col items-center gap-1.5 rounded-xl p-3 transition-all ${
         active
-          ? "bg-[#D4A853] text-[#050507] shadow-lg shadow-[#D4A853]/20"
-          : "border border-[#D4A853]/10 bg-[#D4A853]/5 text-muted-foreground hover:border-[#D4A853]/20 hover:text-foreground"
+          ? "bg-[#FF6B00] text-[#050507] shadow-lg shadow-[#FF6B00]/20"
+          : "border border-[#FF6B00]/10 bg-[#FF6B00]/5 text-muted-foreground hover:border-[#FF6B00]/20 hover:text-foreground"
       }`}
     >
       <Icon className="h-5 w-5" />
@@ -79,14 +79,14 @@ function SegmentedButton({
   onChange: (value: string) => void
 }) {
   return (
-    <div className="flex rounded-xl border border-[#D4A853]/10 bg-[#D4A853]/5 p-1">
+    <div className="flex rounded-xl border border-[#FF6B00]/10 bg-[#FF6B00]/5 p-1">
       {options.map((opt) => (
         <button
           key={opt}
           onClick={() => onChange(opt)}
           className={`flex-1 rounded-lg px-3 py-2 text-xs font-medium transition-all ${
             selected === opt
-              ? "bg-[#D4A853] text-[#050507] shadow-sm"
+              ? "bg-[#FF6B00] text-[#050507] shadow-sm"
               : "text-muted-foreground hover:text-foreground"
           }`}
         >
@@ -130,7 +130,7 @@ export function CharacterStudioContent({ characterId }: { characterId: string })
   return (
     <div className="flex h-[calc(100vh-4rem)] flex-col lg:flex-row">
       {/* Left Panel - Controls */}
-      <div className="flex w-full flex-col border-b border-[#D4A853]/5 bg-[#0c0c10]/50 p-6 lg:w-[320px] lg:border-b-0 lg:border-r">
+      <div className="flex w-full flex-col border-b border-[#FF6B00]/5 bg-[#0c0c10]/50 p-6 lg:w-[320px] lg:border-b-0 lg:border-r">
         {/* Back link */}
         <Link
           href="/influencers"
@@ -142,10 +142,10 @@ export function CharacterStudioContent({ characterId }: { characterId: string })
 
         {/* Reference photo */}
         <div className="mb-6">
-          <label className="mb-2 block text-[10px] font-bold uppercase tracking-[0.15em] text-[#D4A853]/40">
+          <label className="mb-2 block text-[10px] font-bold uppercase tracking-[0.15em] text-[#FF6B00]/40">
             {t("characterStudio.reference")}
           </label>
-          <div className="relative aspect-[3/4] w-full overflow-hidden rounded-xl border border-[#D4A853]/10">
+          <div className="relative aspect-[3/4] w-full overflow-hidden rounded-xl border border-[#FF6B00]/10">
             <Image src={character.image} alt={character.name} fill className="object-cover" />
             <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[#050507]/80 to-transparent p-3">
               <span className="text-sm font-semibold text-foreground">{character.name}</span>
@@ -155,7 +155,7 @@ export function CharacterStudioContent({ characterId }: { characterId: string })
 
         {/* Prompt */}
         <div className="mb-6">
-          <label className="mb-2 block text-[10px] font-bold uppercase tracking-[0.15em] text-[#D4A853]/40">
+          <label className="mb-2 block text-[10px] font-bold uppercase tracking-[0.15em] text-[#FF6B00]/40">
             {t("characterStudio.prompt")}
           </label>
           <textarea
@@ -163,13 +163,13 @@ export function CharacterStudioContent({ characterId }: { characterId: string })
             onChange={(e) => setPrompt(e.target.value)}
             placeholder={t("characterStudio.promptPlaceholder")}
             rows={4}
-            className="w-full resize-none rounded-xl border border-[#D4A853]/10 bg-[#D4A853]/5 px-3 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:border-[#D4A853]/30 focus:outline-none"
+            className="w-full resize-none rounded-xl border border-[#FF6B00]/10 bg-[#FF6B00]/5 px-3 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:border-[#FF6B00]/30 focus:outline-none"
           />
         </div>
 
         {/* Camera motion */}
         <div className="mb-6">
-          <label className="mb-2 block text-[10px] font-bold uppercase tracking-[0.15em] text-[#D4A853]/40">
+          <label className="mb-2 block text-[10px] font-bold uppercase tracking-[0.15em] text-[#FF6B00]/40">
             {t("characterStudio.cameraMotion")}
           </label>
           <div className="grid grid-cols-4 gap-2">
@@ -187,7 +187,7 @@ export function CharacterStudioContent({ characterId }: { characterId: string })
 
         {/* Duration */}
         <div className="mb-6">
-          <label className="mb-2 block text-[10px] font-bold uppercase tracking-[0.15em] text-[#D4A853]/40">
+          <label className="mb-2 block text-[10px] font-bold uppercase tracking-[0.15em] text-[#FF6B00]/40">
             {t("characterStudio.duration")}
           </label>
           <SegmentedButton options={durations} selected={duration} onChange={setDuration} />
@@ -195,14 +195,14 @@ export function CharacterStudioContent({ characterId }: { characterId: string })
 
         {/* Aspect */}
         <div className="mb-6">
-          <label className="mb-2 block text-[10px] font-bold uppercase tracking-[0.15em] text-[#D4A853]/40">
+          <label className="mb-2 block text-[10px] font-bold uppercase tracking-[0.15em] text-[#FF6B00]/40">
             {t("characterStudio.aspect")}
           </label>
           <SegmentedButton options={aspects} selected={aspect} onChange={setAspect} />
         </div>
 
         {/* Generate button */}
-        <button className="mt-auto flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#D4A853] to-[#B8922F] px-6 py-3.5 text-sm font-semibold text-[#050507] shadow-lg shadow-[#D4A853]/15 transition-all hover:shadow-[#D4A853]/25">
+        <button className="mt-auto flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#FF6B00] to-[#E55A00] px-6 py-3.5 text-sm font-semibold text-[#050507] shadow-lg shadow-[#FF6B00]/15 transition-all hover:shadow-[#FF6B00]/25">
           <Sparkles className="h-4 w-4" />
           {t("characterStudio.generate")}
         </button>
@@ -211,14 +211,14 @@ export function CharacterStudioContent({ characterId }: { characterId: string })
       {/* Center - Video Preview */}
       <div className="flex flex-1 items-center justify-center bg-[#050507] p-6">
         <div
-          className={`relative overflow-hidden rounded-2xl border border-[#D4A853]/10 bg-[#0c0c10] ${
+          className={`relative overflow-hidden rounded-2xl border border-[#FF6B00]/10 bg-[#0c0c10] ${
             aspect === "9:16" ? "aspect-[9/16] max-h-[70vh]" : aspect === "1:1" ? "aspect-square max-h-[60vh]" : "aspect-video max-h-[50vh]"
           } w-full max-w-2xl`}
         >
           <Image src="/images/hero-bg.jpg" alt="Video preview" fill className="object-cover opacity-30" priority />
           <div className="absolute inset-0 flex flex-col items-center justify-center gap-4">
-            <div className="flex h-20 w-20 items-center justify-center rounded-2xl border border-[#D4A853]/10 bg-[#050507]/50 backdrop-blur-xl">
-              <Play className="h-10 w-10 text-[#D4A853]/40" />
+            <div className="flex h-20 w-20 items-center justify-center rounded-2xl border border-[#FF6B00]/10 bg-[#050507]/50 backdrop-blur-xl">
+              <Play className="h-10 w-10 text-[#FF6B00]/40" />
             </div>
             <span className="text-sm text-muted-foreground">Your video will appear here</span>
           </div>
@@ -226,8 +226,8 @@ export function CharacterStudioContent({ characterId }: { characterId: string })
       </div>
 
       {/* Right Panel - History */}
-      <div className="hidden w-[280px] flex-col border-l border-[#D4A853]/5 bg-[#0c0c10]/50 p-6 xl:flex">
-        <h3 className="mb-4 text-[10px] font-bold uppercase tracking-[0.15em] text-[#D4A853]/40">
+      <div className="hidden w-[280px] flex-col border-l border-[#FF6B00]/5 bg-[#0c0c10]/50 p-6 xl:flex">
+        <h3 className="mb-4 text-[10px] font-bold uppercase tracking-[0.15em] text-[#FF6B00]/40">
           {t("characterStudio.history")}
         </h3>
 
@@ -236,7 +236,7 @@ export function CharacterStudioContent({ characterId }: { characterId: string })
             {mockHistory.map((item) => (
               <div
                 key={item.id}
-                className="group flex gap-3 rounded-xl border border-[#D4A853]/5 bg-[#D4A853]/3 p-2 transition-all hover:border-[#D4A853]/15"
+                className="group flex gap-3 rounded-xl border border-[#FF6B00]/5 bg-[#FF6B00]/3 p-2 transition-all hover:border-[#FF6B00]/15"
               >
                 <div className="relative h-16 w-12 shrink-0 overflow-hidden rounded-lg">
                   <Image src={item.thumbnail} alt="" fill className="object-cover" />
@@ -255,7 +255,7 @@ export function CharacterStudioContent({ characterId }: { characterId: string })
           </div>
         ) : (
           <div className="flex flex-1 flex-col items-center justify-center text-center">
-            <Clock className="mb-2 h-8 w-8 text-[#D4A853]/20" />
+            <Clock className="mb-2 h-8 w-8 text-[#FF6B00]/20" />
             <span className="text-sm text-muted-foreground">{t("characterStudio.noHistory")}</span>
           </div>
         )}

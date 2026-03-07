@@ -9,7 +9,7 @@
   --card-foreground: #f0ece4;
   --popover: #0c0c10;
   --popover-foreground: #f0ece4;
-  --primary: #D4A853;
+  --primary: #FF6B00;
   --primary-foreground: #050507;
   --secondary: #161619;
   --secondary-foreground: #f0ece4;
@@ -19,10 +19,10 @@
   --accent-foreground: #050507;
   --destructive: #ef4444;
   --destructive-foreground: #ef4444;
-  --border: rgba(212, 168, 83, 0.08);
-  --input: rgba(212, 168, 83, 0.08);
-  --ring: #D4A853;
-  --chart-1: #D4A853;
+  --border: rgba(255, 107, 0, 0.08);
+  --input: rgba(255, 107, 0, 0.08);
+  --ring: #FF6B00;
+  --chart-1: #FF6B00;
   --chart-2: #00D4FF;
   --chart-3: #3b82f6;
   --chart-4: #a855f7;
@@ -30,12 +30,12 @@
   --radius: 0.75rem;
   --sidebar: #08080b;
   --sidebar-foreground: #f0ece4;
-  --sidebar-primary: #D4A853;
+  --sidebar-primary: #FF6B00;
   --sidebar-primary-foreground: #050507;
   --sidebar-accent: #161619;
   --sidebar-accent-foreground: #f0ece4;
-  --sidebar-border: rgba(212, 168, 83, 0.08);
-  --sidebar-ring: #D4A853;
+  --sidebar-border: rgba(255, 107, 0, 0.08);
+  --sidebar-ring: #FF6B00;
 }
 
 @theme inline {
@@ -163,28 +163,28 @@
   background: #050507;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(212, 168, 83, 0.15);
+  background: rgba(255, 107, 0, 0.15);
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(212, 168, 83, 0.3);
+  background: rgba(255, 107, 0, 0.3);
 }
 
 /* Glass card utility */
 .glass-card {
   background: linear-gradient(135deg, rgba(12, 12, 16, 0.8), rgba(22, 22, 25, 0.4));
-  border: 1px solid rgba(212, 168, 83, 0.06);
+  border: 1px solid rgba(255, 107, 0, 0.06);
   backdrop-filter: blur(20px);
 }
 
 .glass-card-hover:hover {
-  border-color: rgba(212, 168, 83, 0.15);
-  box-shadow: 0 0 40px rgba(212, 168, 83, 0.04), inset 0 1px 0 rgba(212, 168, 83, 0.06);
+  border-color: rgba(255, 107, 0, 0.15);
+  box-shadow: 0 0 40px rgba(255, 107, 0, 0.04), inset 0 1px 0 rgba(255, 107, 0, 0.06);
 }
 
-/* Gold gradient text */
+/* Orange gradient text (was gold) */
 .text-gold-gradient {
-  background: linear-gradient(135deg, #D4A853, #F5D799, #D4A853);
+  background: linear-gradient(135deg, #FF6B00, #FF8F3D, #FF6B00);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

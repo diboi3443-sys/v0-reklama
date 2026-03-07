@@ -82,11 +82,11 @@ export function ImageContentV2() {
   return (
     <div className="flex min-h-[calc(100vh-4rem)] flex-col lg:flex-row">
       {/* Left Sidebar */}
-      <aside className="w-full border-b border-[#D4A853]/5 bg-[#08080b] p-5 lg:w-[360px] lg:border-b-0 lg:border-r">
+      <aside className="w-full border-b border-[#FF6B00]/5 bg-[#08080b] p-5 lg:w-[360px] lg:border-b-0 lg:border-r">
         <div className="space-y-6">
           {/* Prompt */}
           <div>
-            <label className="mb-2 block text-[11px] font-bold uppercase tracking-[0.15em] text-[#D4A853]/50">
+            <label className="mb-2 block text-[11px] font-bold uppercase tracking-[0.15em] text-[#FF6B00]/50">
               Промпт
             </label>
             <textarea
@@ -95,13 +95,13 @@ export function ImageContentV2() {
               placeholder="Красивый закат над горами..."
               rows={4}
               disabled={isProcessing}
-              className="w-full resize-none rounded-xl border border-[#D4A853]/10 bg-[#D4A853]/3 px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-[#D4A853]/30 focus:outline-none disabled:opacity-50"
+              className="w-full resize-none rounded-xl border border-[#FF6B00]/10 bg-[#FF6B00]/3 px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-[#FF6B00]/30 focus:outline-none disabled:opacity-50"
             />
           </div>
 
           {/* Negative Prompt */}
           <div>
-            <label className="mb-2 block text-[11px] font-bold uppercase tracking-[0.15em] text-[#D4A853]/50">
+            <label className="mb-2 block text-[11px] font-bold uppercase tracking-[0.15em] text-[#FF6B00]/50">
               Негативный промпт (опционально)
             </label>
             <textarea
@@ -110,20 +110,20 @@ export function ImageContentV2() {
               placeholder="размытое, низкое качество..."
               rows={2}
               disabled={isProcessing}
-              className="w-full resize-none rounded-xl border border-[#D4A853]/10 bg-[#D4A853]/3 px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-[#D4A853]/30 focus:outline-none disabled:opacity-50"
+              className="w-full resize-none rounded-xl border border-[#FF6B00]/10 bg-[#FF6B00]/3 px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-[#FF6B00]/30 focus:outline-none disabled:opacity-50"
             />
           </div>
 
           {/* Model Selection */}
           <div>
-            <label className="mb-2 block text-[11px] font-bold uppercase tracking-[0.15em] text-[#D4A853]/50">
+            <label className="mb-2 block text-[11px] font-bold uppercase tracking-[0.15em] text-[#FF6B00]/50">
               Модель
             </label>
             <select
               value={selectedModel}
               onChange={(e) => setSelectedModel(e.target.value)}
               disabled={isProcessing}
-              className="w-full rounded-xl border border-[#D4A853]/10 bg-[#D4A853]/3 px-4 py-2.5 text-sm text-foreground focus:border-[#D4A853]/30 focus:outline-none disabled:opacity-50"
+              className="w-full rounded-xl border border-[#FF6B00]/10 bg-[#FF6B00]/3 px-4 py-2.5 text-sm text-foreground focus:border-[#FF6B00]/30 focus:outline-none disabled:opacity-50"
             >
               {models.map((model) => (
                 <option key={model.id} value={model.id}>
@@ -135,7 +135,7 @@ export function ImageContentV2() {
 
           {/* Соотношение сторон */}
           <div>
-            <label className="mb-2 block text-[11px] font-bold uppercase tracking-[0.15em] text-[#D4A853]/50">
+            <label className="mb-2 block text-[11px] font-bold uppercase tracking-[0.15em] text-[#FF6B00]/50">
               Соотношение сторон
             </label>
             <div className="flex flex-wrap gap-2">
@@ -146,8 +146,8 @@ export function ImageContentV2() {
                   disabled={isProcessing}
                   className={`rounded-lg px-4 py-2 text-xs font-medium transition-all disabled:opacity-50 ${
                     aspect === a
-                      ? "bg-[#D4A853] text-[#050507] shadow-lg shadow-[#D4A853]/20"
-                      : "border border-[#D4A853]/10 bg-[#D4A853]/3 text-muted-foreground hover:border-[#D4A853]/20"
+                      ? "bg-[#FF6B00] text-[#050507] shadow-lg shadow-[#FF6B00]/20"
+                      : "border border-[#FF6B00]/10 bg-[#FF6B00]/3 text-muted-foreground hover:border-[#FF6B00]/20"
                   }`}
                 >
                   {a}
@@ -158,7 +158,7 @@ export function ImageContentV2() {
 
           {/* Quality */}
           <div>
-            <label className="mb-2 block text-[11px] font-bold uppercase tracking-[0.15em] text-[#D4A853]/50">
+            <label className="mb-2 block text-[11px] font-bold uppercase tracking-[0.15em] text-[#FF6B00]/50">
               Quality: {quality}
             </label>
             <input
@@ -169,7 +169,7 @@ export function ImageContentV2() {
               value={quality}
               onChange={(e) => setQuality(Number(e.target.value))}
               disabled={isProcessing}
-              className="w-full accent-[#D4A853] disabled:opacity-50"
+              className="w-full accent-[#FF6B00] disabled:opacity-50"
             />
             <div className="mt-1 flex justify-between text-[10px] text-muted-foreground">
               <span>Быстро</span>
@@ -179,7 +179,7 @@ export function ImageContentV2() {
 
           {/* Number of Images */}
           <div>
-            <label className="mb-2 block text-[11px] font-bold uppercase tracking-[0.15em] text-[#D4A853]/50">
+            <label className="mb-2 block text-[11px] font-bold uppercase tracking-[0.15em] text-[#FF6B00]/50">
               Number of Images
             </label>
             <div className="flex gap-2">
@@ -190,8 +190,8 @@ export function ImageContentV2() {
                   disabled={isProcessing}
                   className={`flex-1 rounded-lg py-2 text-sm font-medium transition-all disabled:opacity-50 ${
                     count === n
-                      ? "bg-[#D4A853] text-[#050507]"
-                      : "border border-[#D4A853]/10 bg-[#D4A853]/3 text-muted-foreground hover:border-[#D4A853]/20"
+                      ? "bg-[#FF6B00] text-[#050507]"
+                      : "border border-[#FF6B00]/10 bg-[#FF6B00]/3 text-muted-foreground hover:border-[#FF6B00]/20"
                   }`}
                 >
                   {n}
@@ -204,7 +204,7 @@ export function ImageContentV2() {
           <button
             onClick={handleGenerate}
             disabled={isProcessing || !prompt.trim()}
-            className="w-full rounded-xl bg-gradient-to-r from-[#D4A853] to-[#B8922F] px-6 py-3.5 font-semibold text-[#050507] shadow-lg shadow-[#D4A853]/20 transition-all hover:shadow-[#D4A853]/30 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full rounded-xl bg-gradient-to-r from-[#FF6B00] to-[#E55A00] px-6 py-3.5 font-semibold text-[#050507] shadow-lg shadow-[#FF6B00]/20 transition-all hover:shadow-[#FF6B00]/30 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {isProcessing ? (
               <span className="flex items-center justify-center gap-2">
@@ -220,10 +220,10 @@ export function ImageContentV2() {
           </button>
 
           {/* Cost Info */}
-          <div className="rounded-lg border border-[#D4A853]/10 bg-[#D4A853]/5 p-3 text-xs text-muted-foreground">
+          <div className="rounded-lg border border-[#FF6B00]/10 bg-[#FF6B00]/5 p-3 text-xs text-muted-foreground">
             <div className="flex justify-between">
               <span>Cost:</span>
-              <span className="font-semibold text-[#D4A853]">{count} credit{count > 1 ? 's' : ''}</span>
+              <span className="font-semibold text-[#FF6B00]">{count} credit{count > 1 ? 's' : ''}</span>
             </div>
           </div>
         </div>
@@ -235,7 +235,7 @@ export function ImageContentV2() {
           // Empty state
           <div className="flex h-full items-center justify-center">
             <div className="text-center">
-              <Sparkles className="mx-auto h-16 w-16 text-[#D4A853]/30" />
+              <Sparkles className="mx-auto h-16 w-16 text-[#FF6B00]/30" />
               <h3 className="mt-4 text-lg font-semibold text-foreground">Ready to create</h3>
               <p className="mt-2 text-sm text-muted-foreground">
                 Enter a prompt and click Generate to start
@@ -246,7 +246,7 @@ export function ImageContentV2() {
           // Loading state
           <div className="flex h-full items-center justify-center">
             <div className="text-center">
-              <Loader2 className="mx-auto h-16 w-16 animate-spin text-[#D4A853]" />
+              <Loader2 className="mx-auto h-16 w-16 animate-spin text-[#FF6B00]" />
               <h3 className="mt-4 text-lg font-semibold text-foreground">Generating...</h3>
               <p className="mt-2 text-sm text-muted-foreground">
                 Progress: {job.progress}%
@@ -271,7 +271,7 @@ export function ImageContentV2() {
               </p>
               <button
                 onClick={handleReset}
-                className="mt-4 rounded-lg border border-[#D4A853]/20 bg-[#D4A853]/5 px-6 py-2 text-sm font-medium text-foreground hover:bg-[#D4A853]/10"
+                className="mt-4 rounded-lg border border-[#FF6B00]/20 bg-[#FF6B00]/5 px-6 py-2 text-sm font-medium text-foreground hover:bg-[#FF6B00]/10"
               >
                 Try Again
               </button>
@@ -286,7 +286,7 @@ export function ImageContentV2() {
               </h3>
               <button
                 onClick={handleReset}
-                className="flex items-center gap-2 rounded-lg border border-[#D4A853]/20 bg-[#D4A853]/5 px-4 py-2 text-sm font-medium text-foreground hover:bg-[#D4A853]/10"
+                className="flex items-center gap-2 rounded-lg border border-[#FF6B00]/20 bg-[#FF6B00]/5 px-4 py-2 text-sm font-medium text-foreground hover:bg-[#FF6B00]/10"
               >
                 <RefreshCw className="h-4 w-4" />
                 New Generation
@@ -299,7 +299,7 @@ export function ImageContentV2() {
               'grid-cols-2 md:grid-cols-4'
             }`}>
               {job.results.map((url, index) => (
-                <div key={index} className="group relative aspect-square overflow-hidden rounded-xl border border-[#D4A853]/10">
+                <div key={index} className="group relative aspect-square overflow-hidden rounded-xl border border-[#FF6B00]/10">
                   <Image
                     src={url}
                     alt={`Generated image ${index + 1}`}
@@ -309,7 +309,7 @@ export function ImageContentV2() {
                   <div className="absolute inset-0 bg-black/50 opacity-0 transition-opacity group-hover:opacity-100 flex items-center justify-center gap-2">
                     <button
                       onClick={() => handleDownload(url)}
-                      className="rounded-lg bg-[#D4A853] px-4 py-2 text-sm font-semibold text-[#050507] hover:bg-[#B8922F]"
+                      className="rounded-lg bg-[#FF6B00] px-4 py-2 text-sm font-semibold text-[#050507] hover:bg-[#E55A00]"
                     >
                       <Download className="h-4 w-4" />
                     </button>
@@ -319,7 +319,7 @@ export function ImageContentV2() {
             </div>
 
             {/* Metadata */}
-            <div className="mt-6 rounded-lg border border-[#D4A853]/10 bg-[#D4A853]/5 p-4">
+            <div className="mt-6 rounded-lg border border-[#FF6B00]/10 bg-[#FF6B00]/5 p-4">
               <div className="grid grid-cols-2 gap-4 text-sm">
                 <div>
                   <span className="text-muted-foreground">Model:</span>
@@ -333,7 +333,7 @@ export function ImageContentV2() {
                 </div>
                 <div>
                   <span className="text-muted-foreground">Cost:</span>
-                  <span className="ml-2 font-medium text-[#D4A853]">
+                  <span className="ml-2 font-medium text-[#FF6B00]">
                     {job.metadata.costCredits} credits
                   </span>
                 </div>

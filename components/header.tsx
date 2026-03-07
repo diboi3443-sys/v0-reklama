@@ -28,12 +28,12 @@ function NavLink({
       <Link
         href={item.href}
         className={`flex items-center gap-1.5 rounded-lg px-3 py-2 text-[13px] font-medium tracking-wide transition-all ${
-          isActive ? "text-[#D4A853]" : "text-[#f0ece4]/50 hover:text-[#f0ece4]/80"
+          isActive ? "text-[#FF6B00]" : "text-[#f0ece4]/50 hover:text-[#f0ece4]/80"
         }`}
       >
         {item.label}
         {item.badge && (
-          <span className="rounded bg-[#D4A853]/15 px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wider text-[#D4A853]">
+          <span className="rounded bg-[#FF6B00]/15 px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wider text-[#FF6B00]">
             {item.badge}
           </span>
         )}
@@ -75,15 +75,15 @@ export function Header() {
   ]
 
   return (
-    <header className="sticky top-0 z-40 border-b border-[#D4A853]/5 bg-[#050507]/80 backdrop-blur-2xl">
+    <header className="sticky top-0 z-40 border-b border-[#FF6B00]/5 bg-[#050507]/80 backdrop-blur-2xl">
       <div className="mx-auto flex h-16 max-w-[1440px] items-center justify-between px-6">
         {/* Logo */}
         <Link href="/" className="group flex items-center gap-2.5">
-          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-[#D4A853] to-[#B8922F] shadow-lg shadow-[#D4A853]/10 transition-shadow group-hover:shadow-[#D4A853]/25">
+          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-[#FF6B00] to-[#E55A00] shadow-lg shadow-[#FF6B00]/10 transition-shadow group-hover:shadow-[#FF6B00]/25">
             <Sparkles className="h-4.5 w-4.5 text-[#050507]" />
           </div>
           <span className="text-lg font-bold tracking-tight text-foreground">
-            Soul<span className="text-[#D4A853]">Gen</span>
+            Soul<span className="text-[#FF6B00]">Gen</span>
           </span>
         </Link>
 
@@ -124,18 +124,18 @@ export function Header() {
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div className="animate-fade-in border-t border-[#D4A853]/5 bg-[#050507]/95 px-4 pb-6 pt-4 backdrop-blur-2xl lg:hidden">
+        <div className="animate-fade-in border-t border-[#FF6B00]/5 bg-[#050507]/95 px-4 pb-6 pt-4 backdrop-blur-2xl lg:hidden">
           <nav className="flex flex-col gap-1">
             {navItems.map((item) => (
               <Link
                 key={item.key}
                 href={item.href}
-                className="flex items-center gap-2 rounded-lg px-3 py-2.5 text-sm font-medium text-[#f0ece4]/50 transition-colors hover:bg-[#D4A853]/5 hover:text-foreground"
+                className="flex items-center gap-2 rounded-lg px-3 py-2.5 text-sm font-medium text-[#f0ece4]/50 transition-colors hover:bg-[#FF6B00]/5 hover:text-foreground"
                 onClick={() => setMobileOpen(false)}
               >
                 {item.label}
                 {item.badge && (
-                  <span className="rounded bg-[#D4A853]/15 px-1.5 py-0.5 text-[9px] font-bold uppercase text-[#D4A853]">
+                  <span className="rounded bg-[#FF6B00]/15 px-1.5 py-0.5 text-[9px] font-bold uppercase text-[#FF6B00]">
                     {item.badge}
                   </span>
                 )}
@@ -143,7 +143,7 @@ export function Header() {
             ))}
             <Link
               href="/pricing"
-              className="rounded-lg px-3 py-2.5 text-sm font-medium text-[#f0ece4]/50 transition-colors hover:bg-[#D4A853]/5 hover:text-foreground"
+              className="rounded-lg px-3 py-2.5 text-sm font-medium text-[#f0ece4]/50 transition-colors hover:bg-[#FF6B00]/5 hover:text-foreground"
               onClick={() => setMobileOpen(false)}
             >
               {t("nav.pricing")}
@@ -153,7 +153,7 @@ export function Header() {
             <LanguageSwitcher />
             <Link
               href="/auth/sign-in"
-              className="rounded-xl bg-gradient-to-r from-[#D4A853] to-[#B8922F] px-4 py-2.5 text-center text-sm font-semibold text-[#050507]"
+              className="rounded-xl bg-gradient-to-r from-[#FF6B00] to-[#E55A00] px-4 py-2.5 text-center text-sm font-semibold text-[#050507]"
               onClick={() => setMobileOpen(false)}
             >
               {t("nav.signUp")}

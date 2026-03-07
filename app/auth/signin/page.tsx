@@ -19,7 +19,7 @@ function SignInForm() {
       <div className="w-full max-w-md">
         {/* Logo */}
         <div className="mb-8 text-center">
-          <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-[#D4A853] to-[#B8922F] shadow-lg shadow-[#D4A853]/20">
+          <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-[#FF6B00] to-[#E55A00] shadow-lg shadow-[#FF6B00]/20">
             <span className="text-2xl font-bold text-[#050507]">v0</span>
           </div>
           <h1 className="text-2xl font-bold text-[#f0ece4]">
@@ -31,7 +31,7 @@ function SignInForm() {
         </div>
 
         {/* Auth Form */}
-        <div className="rounded-2xl border border-[#D4A853]/10 bg-[#D4A853]/5 p-8">
+        <div className="rounded-2xl border border-[#FF6B00]/10 bg-[#FF6B00]/5 p-8">
           <Auth
             supabaseClient={supabase}
             appearance={{
@@ -39,18 +39,18 @@ function SignInForm() {
               variables: {
                 default: {
                   colors: {
-                    brand: '#D4A853',
-                    brandAccent: '#B8922F',
+                    brand: '#FF6B00',
+                    brandAccent: '#E55A00',
                     brandButtonText: '#050507',
-                    defaultButtonBackground: '#D4A853',
-                    defaultButtonBackgroundHover: '#B8922F',
-                    defaultButtonBorder: '#D4A853',
+                    defaultButtonBackground: '#FF6B00',
+                    defaultButtonBackgroundHover: '#E55A00',
+                    defaultButtonBorder: '#FF6B00',
                     defaultButtonText: '#050507',
-                    dividerBackground: '#D4A853',
-                    inputBackground: 'rgba(212, 168, 83, 0.03)',
-                    inputBorder: 'rgba(212, 168, 83, 0.1)',
-                    inputBorderHover: 'rgba(212, 168, 83, 0.3)',
-                    inputBorderFocus: 'rgba(212, 168, 83, 0.3)',
+                    dividerBackground: '#FF6B00',
+                    inputBackground: 'rgba(255, 107, 0, 0.03)',
+                    inputBorder: 'rgba(255, 107, 0, 0.1)',
+                    inputBorderHover: 'rgba(255, 107, 0, 0.3)',
+                    inputBorderFocus: 'rgba(255, 107, 0, 0.3)',
                     inputText: '#f0ece4',
                     inputPlaceholder: 'rgba(240, 236, 228, 0.3)',
                   },
@@ -130,8 +130,8 @@ function SignInForm() {
         </div>
 
         {/* Free Trial Badge */}
-        <div className="mt-6 rounded-lg border border-[#D4A853]/20 bg-[#D4A853]/10 p-4 text-center">
-          <div className="text-sm font-semibold text-[#D4A853]">
+        <div className="mt-6 rounded-lg border border-[#FF6B00]/20 bg-[#FF6B00]/10 p-4 text-center">
+          <div className="text-sm font-semibold text-[#FF6B00]">
             🎁 Бесплатная пробная версия
           </div>
           <div className="mt-1 text-xs text-[#f0ece4]/60">

@@ -17,13 +17,13 @@ function HeroSection() {
         <div className="absolute inset-0 bg-gradient-to-b from-[#050507] via-[#050507]/60 to-[#050507]" />
       </div>
       <div className="pointer-events-none absolute inset-0">
-        <div className="animate-float absolute left-1/4 top-1/3 h-[500px] w-[500px] rounded-full bg-[#D4A853]/4 blur-[150px]" />
+        <div className="animate-float absolute left-1/4 top-1/3 h-[500px] w-[500px] rounded-full bg-[#FF6B00]/4 blur-[150px]" />
         <div className="animate-float-delayed absolute right-1/4 top-1/2 h-[400px] w-[400px] rounded-full bg-[#00D4FF]/4 blur-[120px]" />
       </div>
       <div className="relative mx-auto max-w-5xl px-6 text-center">
-        <div className="mb-8 inline-flex items-center gap-2.5 rounded-full border border-[#D4A853]/15 bg-[#D4A853]/5 px-5 py-2 backdrop-blur-sm">
-          <span className="flex h-2 w-2 rounded-full bg-[#D4A853] animate-pulse-glow" />
-          <span className="text-[13px] font-medium text-[#D4A853]/80">Cinema Studio 2.0</span>
+        <div className="mb-8 inline-flex items-center gap-2.5 rounded-full border border-[#FF6B00]/15 bg-[#FF6B00]/5 px-5 py-2 backdrop-blur-sm">
+          <span className="flex h-2 w-2 rounded-full bg-[#FF6B00] animate-pulse-glow" />
+          <span className="text-[13px] font-medium text-[#FF6B00]/80">Cinema Studio 2.0</span>
         </div>
         <h1 className="text-balance font-serif text-5xl font-bold leading-[1.1] tracking-tight md:text-7xl lg:text-8xl">
           <span className="text-gold-gradient">{t("hero.title")}</span>
@@ -34,7 +34,7 @@ function HeroSection() {
         <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <Link
             href="/image"
-            className="group flex items-center gap-2.5 rounded-2xl bg-gradient-to-r from-[#D4A853] to-[#B8922F] px-10 py-4 text-base font-semibold text-[#050507] shadow-2xl shadow-[#D4A853]/15 transition-all hover:shadow-[#D4A853]/30"
+            className="group flex items-center gap-2.5 rounded-2xl bg-gradient-to-r from-[#FF6B00] to-[#E55A00] px-10 py-4 text-base font-semibold text-[#050507] shadow-2xl shadow-[#FF6B00]/15 transition-all hover:shadow-[#FF6B00]/30"
           >
             {t("hero.ctaPrimary")}
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
@@ -54,7 +54,7 @@ function HeroSection() {
             { value: "8K", label: "Max Quality" },
           ].map((stat) => (
             <div key={stat.label} className="text-center">
-              <div className="text-2xl font-bold text-[#D4A853] md:text-3xl">{stat.value}</div>
+              <div className="text-2xl font-bold text-[#FF6B00] md:text-3xl">{stat.value}</div>
               <div className="mt-1 text-xs uppercase tracking-wider text-muted-foreground">{stat.label}</div>
             </div>
           ))}
@@ -79,7 +79,7 @@ function ToolsSection() {
     <section className="py-24 md:py-32">
       <div className="mx-auto max-w-[1440px] px-6">
         <div className="mb-16 text-center">
-          <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.2em] text-[#D4A853]/50">Creative Suite</p>
+          <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.2em] text-[#FF6B00]/50">Creative Suite</p>
           <h2 className="font-serif text-3xl font-bold text-foreground md:text-5xl text-balance">{t("tools.title")}</h2>
           <p className="mx-auto mt-4 max-w-xl text-muted-foreground text-pretty leading-relaxed">{t("tools.subtitle")}</p>
         </div>
@@ -97,7 +97,7 @@ function ToolsSection() {
                   <div className="absolute inset-0 bg-gradient-to-t from-[#050507] via-[#050507]/40 to-transparent" />
                 </div>
                 <div className="relative p-5">
-                  <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl border border-[#D4A853]/15 bg-[#D4A853]/10 text-[#D4A853]">
+                  <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl border border-[#FF6B00]/15 bg-[#FF6B00]/10 text-[#FF6B00]">
                     <Icon className="h-5 w-5" />
                   </div>
                   <h3 className="text-lg font-semibold text-foreground">{t(`tools.${tool.key}`)}</h3>
@@ -143,7 +143,7 @@ function ModelsSection() {
                 <div className="absolute inset-0 bg-gradient-to-t from-[#050507]/80 via-[#050507]/20 to-transparent" />
                 <span className={`absolute right-3 top-3 rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-wider backdrop-blur-sm ${
                   model.color === "gold"
-                    ? "bg-[#D4A853]/20 text-[#D4A853] border border-[#D4A853]/20"
+                    ? "bg-[#FF6B00]/20 text-[#FF6B00] border border-[#FF6B00]/20"
                     : "bg-[#00D4FF]/20 text-[#00D4FF] border border-[#00D4FF]/20"
                 }`}>
                   {model.tag}
@@ -178,7 +178,7 @@ function GallerySection() {
     <section className="py-24 md:py-32">
       <div className="mx-auto max-w-[1440px] px-6">
         <div className="mb-16 text-center">
-          <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.2em] text-[#D4A853]/50">Showcase</p>
+          <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.2em] text-[#FF6B00]/50">Showcase</p>
           <h2 className="font-serif text-3xl font-bold text-foreground md:text-5xl text-balance">{t("gallery.title")}</h2>
           <p className="mx-auto mt-4 max-w-xl text-muted-foreground text-pretty leading-relaxed">{t("gallery.subtitle")}</p>
         </div>
@@ -186,7 +186,7 @@ function GallerySection() {
           {images.map((src, i) => (
             <div
               key={i}
-              className="group relative aspect-square overflow-hidden rounded-2xl border border-[#D4A853]/5 transition-all duration-300 hover:border-[#D4A853]/15"
+              className="group relative aspect-square overflow-hidden rounded-2xl border border-[#FF6B00]/5 transition-all duration-300 hover:border-[#FF6B00]/15"
             >
               <Image src={src} alt={`AI generated artwork ${i + 1}`} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
               <div className="absolute inset-0 bg-gradient-to-t from-[#050507]/60 via-transparent to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
@@ -204,21 +204,21 @@ function CtaSection() {
   return (
     <section className="py-24 md:py-32">
       <div className="mx-auto max-w-4xl px-6">
-        <div className="relative overflow-hidden rounded-3xl border border-[#D4A853]/10">
+        <div className="relative overflow-hidden rounded-3xl border border-[#FF6B00]/10">
           <Image src="/images/hero-bg.jpg" alt="" fill className="object-cover opacity-20" />
           <div className="absolute inset-0 bg-gradient-to-b from-[#0c0c10]/90 to-[#050507]/95" />
           <div className="pointer-events-none absolute inset-0">
-            <div className="absolute left-1/2 top-0 h-[300px] w-[400px] -translate-x-1/2 rounded-full bg-[#D4A853]/5 blur-[100px]" />
+            <div className="absolute left-1/2 top-0 h-[300px] w-[400px] -translate-x-1/2 rounded-full bg-[#FF6B00]/5 blur-[100px]" />
           </div>
           <div className="relative px-8 py-16 text-center md:px-16 md:py-24">
-            <div className="mx-auto mb-8 flex h-16 w-16 items-center justify-center rounded-2xl border border-[#D4A853]/10 bg-[#D4A853]/5">
-              <Zap className="h-8 w-8 text-[#D4A853]" />
+            <div className="mx-auto mb-8 flex h-16 w-16 items-center justify-center rounded-2xl border border-[#FF6B00]/10 bg-[#FF6B00]/5">
+              <Zap className="h-8 w-8 text-[#FF6B00]" />
             </div>
             <h2 className="font-serif text-3xl font-bold text-foreground md:text-5xl text-balance">{t("cta.title")}</h2>
             <p className="mx-auto mt-5 max-w-lg text-muted-foreground text-pretty leading-relaxed">{t("cta.subtitle")}</p>
             <Link
               href="/auth/sign-in"
-              className="mt-10 inline-flex items-center gap-2.5 rounded-2xl bg-gradient-to-r from-[#D4A853] to-[#B8922F] px-10 py-4 text-base font-semibold text-[#050507] shadow-2xl shadow-[#D4A853]/15 transition-all hover:shadow-[#D4A853]/30"
+              className="mt-10 inline-flex items-center gap-2.5 rounded-2xl bg-gradient-to-r from-[#FF6B00] to-[#E55A00] px-10 py-4 text-base font-semibold text-[#050507] shadow-2xl shadow-[#FF6B00]/15 transition-all hover:shadow-[#FF6B00]/30"
             >
               {t("cta.button")}
               <ArrowRight className="h-4 w-4" />

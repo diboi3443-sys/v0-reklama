@@ -75,12 +75,12 @@ export default function PricingPage() {
 
         {/* Toggle: Credits vs Subscriptions */}
         <div className="mt-10 flex justify-center">
-          <div className="inline-flex rounded-xl border border-[#D4A853]/10 bg-[#D4A853]/5 p-1">
+          <div className="inline-flex rounded-xl border border-[#FF6B00]/10 bg-[#FF6B00]/5 p-1">
             <button
               onClick={() => setMode('subscription')}
               className={`rounded-lg px-6 py-2 text-sm font-semibold transition-all ${
                 mode === 'subscription'
-                  ? 'bg-gradient-to-r from-[#D4A853] to-[#B8922F] text-[#050507] shadow-lg'
+                  ? 'bg-gradient-to-r from-[#FF6B00] to-[#E55A00] text-[#050507] shadow-lg'
                   : 'text-muted-foreground hover:text-foreground'
               }`}
             >
@@ -90,7 +90,7 @@ export default function PricingPage() {
               onClick={() => setMode('credits')}
               className={`rounded-lg px-6 py-2 text-sm font-semibold transition-all ${
                 mode === 'credits'
-                  ? 'bg-gradient-to-r from-[#D4A853] to-[#B8922F] text-[#050507] shadow-lg'
+                  ? 'bg-gradient-to-r from-[#FF6B00] to-[#E55A00] text-[#050507] shadow-lg'
                   : 'text-muted-foreground hover:text-foreground'
               }`}
             >
@@ -107,13 +107,13 @@ export default function PricingPage() {
                 key={key}
                 className={`relative rounded-2xl border p-8 transition-all ${
                   plan.popular
-                    ? 'border-[#D4A853] bg-[#D4A853]/5 shadow-lg shadow-[#D4A853]/10'
-                    : 'border-[#D4A853]/10 bg-[#D4A853]/3'
+                    ? 'border-[#FF6B00] bg-[#FF6B00]/5 shadow-lg shadow-[#FF6B00]/10'
+                    : 'border-[#FF6B00]/10 bg-[#FF6B00]/3'
                 }`}
               >
                 {plan.popular && (
                   <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                    <div className="rounded-full bg-gradient-to-r from-[#D4A853] to-[#B8922F] px-4 py-1 text-xs font-bold text-[#050507]">
+                    <div className="rounded-full bg-gradient-to-r from-[#FF6B00] to-[#E55A00] px-4 py-1 text-xs font-bold text-[#050507]">
                       ПОПУЛЯРНЫЙ
                     </div>
                   </div>
@@ -121,9 +121,9 @@ export default function PricingPage() {
 
                 {/* Icon */}
                 <div className="mb-4">
-                  {key === 'starter' && <Zap className="h-10 w-10 text-[#D4A853]" />}
-                  {key === 'pro' && <Sparkles className="h-10 w-10 text-[#D4A853]" />}
-                  {key === 'studio' && <Crown className="h-10 w-10 text-[#D4A853]" />}
+                  {key === 'starter' && <Zap className="h-10 w-10 text-[#FF6B00]" />}
+                  {key === 'pro' && <Sparkles className="h-10 w-10 text-[#FF6B00]" />}
+                  {key === 'studio' && <Crown className="h-10 w-10 text-[#FF6B00]" />}
                 </div>
 
                 {/* Plan name */}
@@ -141,7 +141,7 @@ export default function PricingPage() {
                 <ul className="mt-6 space-y-3">
                   {plan.features.map((feature, idx) => (
                     <li key={idx} className="flex items-start gap-3 text-sm text-muted-foreground">
-                      <Check className="h-5 w-5 shrink-0 text-[#D4A853]" />
+                      <Check className="h-5 w-5 shrink-0 text-[#FF6B00]" />
                       <span>{feature}</span>
                     </li>
                   ))}
@@ -153,8 +153,8 @@ export default function PricingPage() {
                   disabled={loading === key}
                   className={`mt-8 w-full rounded-xl px-6 py-3 font-semibold transition-all ${
                     plan.popular
-                      ? 'bg-gradient-to-r from-[#D4A853] to-[#B8922F] text-[#050507] shadow-lg hover:shadow-xl'
-                      : 'border border-[#D4A853]/20 bg-[#D4A853]/5 text-foreground hover:bg-[#D4A853]/10'
+                      ? 'bg-gradient-to-r from-[#FF6B00] to-[#E55A00] text-[#050507] shadow-lg hover:shadow-xl'
+                      : 'border border-[#FF6B00]/20 bg-[#FF6B00]/5 text-foreground hover:bg-[#FF6B00]/10'
                   }`}
                 >
                   {loading === key ? 'Загрузка...' : 'Выбрать план'}
@@ -172,13 +172,13 @@ export default function PricingPage() {
                 key={key}
                 className={`relative rounded-2xl border p-8 transition-all ${
                   pack.popular
-                    ? 'border-[#D4A853] bg-[#D4A853]/5 shadow-lg shadow-[#D4A853]/10'
-                    : 'border-[#D4A853]/10 bg-[#D4A853]/3'
+                    ? 'border-[#FF6B00] bg-[#FF6B00]/5 shadow-lg shadow-[#FF6B00]/10'
+                    : 'border-[#FF6B00]/10 bg-[#FF6B00]/3'
                 }`}
               >
                 {pack.popular && (
                   <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                    <div className="rounded-full bg-gradient-to-r from-[#D4A853] to-[#B8922F] px-4 py-1 text-xs font-bold text-[#050507]">
+                    <div className="rounded-full bg-gradient-to-r from-[#FF6B00] to-[#E55A00] px-4 py-1 text-xs font-bold text-[#050507]">
                       ВЫГОДНО
                     </div>
                   </div>
@@ -189,7 +189,7 @@ export default function PricingPage() {
 
                 {/* Credits */}
                 <div className="mt-4">
-                  <span className="text-5xl font-bold text-[#D4A853]">
+                  <span className="text-5xl font-bold text-[#FF6B00]">
                     {pack.credits}
                   </span>
                   <span className="ml-2 text-muted-foreground">credits</span>
@@ -216,8 +216,8 @@ export default function PricingPage() {
                   disabled={loading === key}
                   className={`mt-8 w-full rounded-xl px-6 py-3 font-semibold transition-all ${
                     pack.popular
-                      ? 'bg-gradient-to-r from-[#D4A853] to-[#B8922F] text-[#050507] shadow-lg hover:shadow-xl'
-                      : 'border border-[#D4A853]/20 bg-[#D4A853]/5 text-foreground hover:bg-[#D4A853]/10'
+                      ? 'bg-gradient-to-r from-[#FF6B00] to-[#E55A00] text-[#050507] shadow-lg hover:shadow-xl'
+                      : 'border border-[#FF6B00]/20 bg-[#FF6B00]/5 text-foreground hover:bg-[#FF6B00]/10'
                   }`}
                 >
                   {loading === key ? 'Загрузка...' : 'Купить'}
@@ -228,7 +228,7 @@ export default function PricingPage() {
         )}
 
         {/* Free tier info */}
-        <div className="mt-16 rounded-2xl border border-[#D4A853]/10 bg-[#D4A853]/5 p-8 text-center">
+        <div className="mt-16 rounded-2xl border border-[#FF6B00]/10 bg-[#FF6B00]/5 p-8 text-center">
           <h3 className="text-xl font-bold text-foreground">
             🎁 Бесплатный план
           </h3>
@@ -237,7 +237,7 @@ export default function PricingPage() {
           </p>
           <a
             href="/auth/signin"
-            className="mt-4 inline-block rounded-lg border border-[#D4A853]/20 px-6 py-2 text-sm font-semibold text-foreground transition-all hover:bg-[#D4A853]/10"
+            className="mt-4 inline-block rounded-lg border border-[#FF6B00]/20 px-6 py-2 text-sm font-semibold text-foreground transition-all hover:bg-[#FF6B00]/10"
           >
             Начать бесплатно
           </a>

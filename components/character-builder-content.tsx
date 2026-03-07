@@ -27,10 +27,10 @@ function StepIndicator({ current, total }: { current: number; total: number }) {
           key={i}
           className={`h-2 rounded-full transition-all ${
             i < current
-              ? "w-8 bg-[#D4A853]"
+              ? "w-8 bg-[#FF6B00]"
               : i === current
-              ? "w-8 bg-[#D4A853]/50"
-              : "w-2 bg-[#D4A853]/20"
+              ? "w-8 bg-[#FF6B00]/50"
+              : "w-2 bg-[#FF6B00]/20"
           }`}
         />
       ))}
@@ -55,8 +55,8 @@ function ColorPicker({
           onClick={() => onChange(color)}
           className={`h-8 w-8 rounded-full border-2 transition-all ${
             selected === color
-              ? "border-[#D4A853] ring-2 ring-[#D4A853]/30"
-              : "border-transparent hover:border-[#D4A853]/30"
+              ? "border-[#FF6B00] ring-2 ring-[#FF6B00]/30"
+              : "border-transparent hover:border-[#FF6B00]/30"
           }`}
           style={{ backgroundColor: color }}
         />
@@ -79,8 +79,8 @@ function OptionButton({
       onClick={onClick}
       className={`rounded-xl px-4 py-2.5 text-sm font-medium transition-all ${
         active
-          ? "bg-[#D4A853] text-[#050507] shadow-lg shadow-[#D4A853]/20"
-          : "border border-[#D4A853]/10 bg-[#D4A853]/5 text-muted-foreground hover:border-[#D4A853]/20 hover:text-foreground"
+          ? "bg-[#FF6B00] text-[#050507] shadow-lg shadow-[#FF6B00]/20"
+          : "border border-[#FF6B00]/10 bg-[#FF6B00]/5 text-muted-foreground hover:border-[#FF6B00]/20 hover:text-foreground"
       }`}
     >
       {children}
@@ -141,7 +141,7 @@ export function CharacterBuilderContent() {
         <div className="flex items-center gap-4">
           <Link
             href="/influencers"
-            className="flex h-10 w-10 items-center justify-center rounded-xl border border-[#D4A853]/10 bg-[#D4A853]/5 text-muted-foreground transition-colors hover:text-foreground"
+            className="flex h-10 w-10 items-center justify-center rounded-xl border border-[#FF6B00]/10 bg-[#FF6B00]/5 text-muted-foreground transition-colors hover:text-foreground"
           >
             <ArrowLeft className="h-5 w-5" />
           </Link>
@@ -158,7 +158,7 @@ export function CharacterBuilderContent() {
       {step === 0 && (
         <div className="animate-fade-in space-y-8">
           <div className="glass-card rounded-2xl p-6">
-            <label className="mb-3 block text-[11px] font-bold uppercase tracking-[0.15em] text-[#D4A853]/50">
+            <label className="mb-3 block text-[11px] font-bold uppercase tracking-[0.15em] text-[#FF6B00]/50">
               {t("characterBuilder.name")}
             </label>
             <input
@@ -166,12 +166,12 @@ export function CharacterBuilderContent() {
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder={t("characterBuilder.namePlaceholder")}
-              className="w-full rounded-xl border border-[#D4A853]/10 bg-[#D4A853]/5 px-4 py-3 text-foreground placeholder:text-muted-foreground focus:border-[#D4A853]/30 focus:outline-none"
+              className="w-full rounded-xl border border-[#FF6B00]/10 bg-[#FF6B00]/5 px-4 py-3 text-foreground placeholder:text-muted-foreground focus:border-[#FF6B00]/30 focus:outline-none"
             />
           </div>
 
           <div className="glass-card rounded-2xl p-6">
-            <label className="mb-4 block text-[11px] font-bold uppercase tracking-[0.15em] text-[#D4A853]/50">
+            <label className="mb-4 block text-[11px] font-bold uppercase tracking-[0.15em] text-[#FF6B00]/50">
               {t("characterBuilder.type")}
             </label>
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
@@ -183,8 +183,8 @@ export function CharacterBuilderContent() {
                     onClick={() => setType(t_type)}
                     className={`flex flex-col items-center gap-3 rounded-xl p-4 transition-all ${
                       type === t_type
-                        ? "border border-[#D4A853]/30 bg-[#D4A853]/10 text-[#D4A853]"
-                        : "border border-[#D4A853]/10 bg-[#D4A853]/5 text-muted-foreground hover:border-[#D4A853]/20 hover:text-foreground"
+                        ? "border border-[#FF6B00]/30 bg-[#FF6B00]/10 text-[#FF6B00]"
+                        : "border border-[#FF6B00]/10 bg-[#FF6B00]/5 text-muted-foreground hover:border-[#FF6B00]/20 hover:text-foreground"
                     }`}
                   >
                     <Icon className="h-8 w-8" />
@@ -197,7 +197,7 @@ export function CharacterBuilderContent() {
 
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
             <div className="glass-card rounded-2xl p-6">
-              <label className="mb-3 block text-[11px] font-bold uppercase tracking-[0.15em] text-[#D4A853]/50">
+              <label className="mb-3 block text-[11px] font-bold uppercase tracking-[0.15em] text-[#FF6B00]/50">
                 {t("characterBuilder.gender")}
               </label>
               <div className="flex flex-wrap gap-2">
@@ -210,7 +210,7 @@ export function CharacterBuilderContent() {
             </div>
 
             <div className="glass-card rounded-2xl p-6">
-              <label className="mb-3 block text-[11px] font-bold uppercase tracking-[0.15em] text-[#D4A853]/50">
+              <label className="mb-3 block text-[11px] font-bold uppercase tracking-[0.15em] text-[#FF6B00]/50">
                 {t("characterBuilder.age")}: {age}
               </label>
               <input
@@ -219,18 +219,18 @@ export function CharacterBuilderContent() {
                 max={60}
                 value={age}
                 onChange={(e) => setAge(Number(e.target.value))}
-                className="w-full accent-[#D4A853]"
+                className="w-full accent-[#FF6B00]"
               />
             </div>
 
             <div className="glass-card rounded-2xl p-6">
-              <label className="mb-3 block text-[11px] font-bold uppercase tracking-[0.15em] text-[#D4A853]/50">
+              <label className="mb-3 block text-[11px] font-bold uppercase tracking-[0.15em] text-[#FF6B00]/50">
                 {t("characterBuilder.ethnicity")}
               </label>
               <select
                 value={ethnicity}
                 onChange={(e) => setEthnicity(e.target.value)}
-                className="w-full rounded-xl border border-[#D4A853]/10 bg-[#D4A853]/5 px-3 py-2.5 text-sm text-foreground focus:outline-none"
+                className="w-full rounded-xl border border-[#FF6B00]/10 bg-[#FF6B00]/5 px-3 py-2.5 text-sm text-foreground focus:outline-none"
               >
                 <option value="" className="bg-[#0c0c10]">—</option>
                 {ethnicityOptions.map((opt) => (
@@ -247,19 +247,19 @@ export function CharacterBuilderContent() {
         <div className="animate-fade-in space-y-6">
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
             <div className="glass-card rounded-2xl p-6">
-              <label className="mb-4 block text-[11px] font-bold uppercase tracking-[0.15em] text-[#D4A853]/50">
+              <label className="mb-4 block text-[11px] font-bold uppercase tracking-[0.15em] text-[#FF6B00]/50">
                 {t("characterBuilder.hairColor")}
               </label>
               <ColorPicker colors={hairColors} selected={hairColor} onChange={setHairColor} />
             </div>
             <div className="glass-card rounded-2xl p-6">
-              <label className="mb-4 block text-[11px] font-bold uppercase tracking-[0.15em] text-[#D4A853]/50">
+              <label className="mb-4 block text-[11px] font-bold uppercase tracking-[0.15em] text-[#FF6B00]/50">
                 {t("characterBuilder.eyeColor")}
               </label>
               <ColorPicker colors={eyeColors} selected={eyeColor} onChange={setEyeColor} />
             </div>
             <div className="glass-card rounded-2xl p-6">
-              <label className="mb-4 block text-[11px] font-bold uppercase tracking-[0.15em] text-[#D4A853]/50">
+              <label className="mb-4 block text-[11px] font-bold uppercase tracking-[0.15em] text-[#FF6B00]/50">
                 {t("characterBuilder.skinTone")}
               </label>
               <ColorPicker colors={skinTones} selected={skinTone} onChange={setSkinTone} />
@@ -268,7 +268,7 @@ export function CharacterBuilderContent() {
 
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
             <div className="glass-card rounded-2xl p-6">
-              <label className="mb-4 block text-[11px] font-bold uppercase tracking-[0.15em] text-[#D4A853]/50">
+              <label className="mb-4 block text-[11px] font-bold uppercase tracking-[0.15em] text-[#FF6B00]/50">
                 {t("characterBuilder.faceType")}
               </label>
               <div className="flex flex-wrap gap-2">
@@ -280,7 +280,7 @@ export function CharacterBuilderContent() {
               </div>
             </div>
             <div className="glass-card rounded-2xl p-6">
-              <label className="mb-4 block text-[11px] font-bold uppercase tracking-[0.15em] text-[#D4A853]/50">
+              <label className="mb-4 block text-[11px] font-bold uppercase tracking-[0.15em] text-[#FF6B00]/50">
                 {t("characterBuilder.bodyType")}
               </label>
               <div className="flex flex-wrap gap-2">
@@ -294,7 +294,7 @@ export function CharacterBuilderContent() {
           </div>
 
           <div className="glass-card rounded-2xl p-6">
-            <label className="mb-4 block text-[11px] font-bold uppercase tracking-[0.15em] text-[#D4A853]/50">
+            <label className="mb-4 block text-[11px] font-bold uppercase tracking-[0.15em] text-[#FF6B00]/50">
               {t("characterBuilder.specialTraits")}
             </label>
             <div className="flex flex-wrap gap-2">
@@ -304,8 +304,8 @@ export function CharacterBuilderContent() {
                   onClick={() => toggleTrait(trait)}
                   className={`flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-medium transition-all ${
                     traits.includes(trait)
-                      ? "bg-[#D4A853] text-[#050507]"
-                      : "border border-[#D4A853]/10 bg-[#D4A853]/5 text-muted-foreground hover:border-[#D4A853]/20"
+                      ? "bg-[#FF6B00] text-[#050507]"
+                      : "border border-[#FF6B00]/10 bg-[#FF6B00]/5 text-muted-foreground hover:border-[#FF6B00]/20"
                   }`}
                 >
                   {traits.includes(trait) && <Check className="h-4 w-4" />}
@@ -322,8 +322,8 @@ export function CharacterBuilderContent() {
         <div className="animate-fade-in space-y-8">
           {!isGenerating && selectedVariant === null && (
             <div className="flex flex-col items-center py-12 text-center">
-              <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-2xl border border-[#D4A853]/10 bg-[#D4A853]/5">
-                <Sparkles className="h-10 w-10 text-[#D4A853]/40" />
+              <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-2xl border border-[#FF6B00]/10 bg-[#FF6B00]/5">
+                <Sparkles className="h-10 w-10 text-[#FF6B00]/40" />
               </div>
               <h3 className="text-xl font-semibold text-foreground">{name || "Character"}</h3>
               <p className="mt-2 text-muted-foreground">
@@ -331,7 +331,7 @@ export function CharacterBuilderContent() {
               </p>
               <button
                 onClick={handleGenerate}
-                className="mt-8 inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#D4A853] to-[#B8922F] px-8 py-4 text-base font-semibold text-[#050507] shadow-lg shadow-[#D4A853]/15 transition-all hover:shadow-[#D4A853]/25"
+                className="mt-8 inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#FF6B00] to-[#E55A00] px-8 py-4 text-base font-semibold text-[#050507] shadow-lg shadow-[#FF6B00]/15 transition-all hover:shadow-[#FF6B00]/25"
               >
                 <Sparkles className="h-5 w-5" />
                 {t("characterBuilder.generateVariants")}
@@ -341,7 +341,7 @@ export function CharacterBuilderContent() {
 
           {isGenerating && (
             <div className="flex flex-col items-center py-20 text-center">
-              <Loader2 className="mb-4 h-12 w-12 animate-spin text-[#D4A853]" />
+              <Loader2 className="mb-4 h-12 w-12 animate-spin text-[#FF6B00]" />
               <p className="text-muted-foreground">{t("characterBuilder.creating")}</p>
             </div>
           )}
@@ -352,12 +352,12 @@ export function CharacterBuilderContent() {
                 <button
                   key={i}
                   onClick={() => setSelectedVariant(i)}
-                  className="group relative aspect-square overflow-hidden rounded-2xl border border-[#D4A853]/10 transition-all hover:border-[#D4A853]/30"
+                  className="group relative aspect-square overflow-hidden rounded-2xl border border-[#FF6B00]/10 transition-all hover:border-[#FF6B00]/30"
                 >
                   <Image src={img} alt={`Variant ${i + 1}`} fill className="object-cover transition-transform group-hover:scale-105" />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#050507]/60 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
                   <div className="absolute bottom-4 left-4 right-4 opacity-0 transition-opacity group-hover:opacity-100">
-                    <span className="rounded-lg bg-[#D4A853] px-4 py-2 text-sm font-semibold text-[#050507]">
+                    <span className="rounded-lg bg-[#FF6B00] px-4 py-2 text-sm font-semibold text-[#050507]">
                       {t("characterBuilder.selectVariant")}
                     </span>
                   </div>
@@ -368,12 +368,12 @@ export function CharacterBuilderContent() {
 
           {selectedVariant !== null && (
             <div className="text-center">
-              <div className="relative mx-auto mb-6 aspect-square max-w-md overflow-hidden rounded-2xl border border-[#D4A853]/20">
+              <div className="relative mx-auto mb-6 aspect-square max-w-md overflow-hidden rounded-2xl border border-[#FF6B00]/20">
                 <Image src={variantImages[selectedVariant]} alt="Selected" fill className="object-cover" />
               </div>
               <Link
                 href={`/influencers/new/studio`}
-                className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#D4A853] to-[#B8922F] px-8 py-4 text-base font-semibold text-[#050507] shadow-lg shadow-[#D4A853]/15"
+                className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#FF6B00] to-[#E55A00] px-8 py-4 text-base font-semibold text-[#050507] shadow-lg shadow-[#FF6B00]/15"
               >
                 Open Studio
                 <ArrowRight className="h-5 w-5" />
@@ -388,7 +388,7 @@ export function CharacterBuilderContent() {
         <button
           onClick={() => setStep((s) => Math.max(0, s - 1))}
           disabled={step === 0}
-          className="flex items-center gap-2 rounded-xl border border-[#D4A853]/10 bg-[#D4A853]/5 px-5 py-2.5 text-sm font-medium text-muted-foreground transition-all hover:text-foreground disabled:opacity-30"
+          className="flex items-center gap-2 rounded-xl border border-[#FF6B00]/10 bg-[#FF6B00]/5 px-5 py-2.5 text-sm font-medium text-muted-foreground transition-all hover:text-foreground disabled:opacity-30"
         >
           <ArrowLeft className="h-4 w-4" />
           {t("characterBuilder.back")}
@@ -396,7 +396,7 @@ export function CharacterBuilderContent() {
         {step < 2 && (
           <button
             onClick={() => setStep((s) => Math.min(2, s + 1))}
-            className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#D4A853] to-[#B8922F] px-5 py-2.5 text-sm font-semibold text-[#050507] shadow-lg shadow-[#D4A853]/15"
+            className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#FF6B00] to-[#E55A00] px-5 py-2.5 text-sm font-semibold text-[#050507] shadow-lg shadow-[#FF6B00]/15"
           >
             {t("characterBuilder.next")}
             <ArrowRight className="h-4 w-4" />

@@ -44,8 +44,8 @@ function FilterButton({
       onClick={onClick}
       className={`rounded-xl px-4 py-2 text-sm font-medium transition-all ${
         active
-          ? "bg-[#D4A853] text-[#050507] shadow-lg shadow-[#D4A853]/20"
-          : "border border-[#D4A853]/10 bg-[#D4A853]/5 text-muted-foreground hover:border-[#D4A853]/20 hover:text-foreground"
+          ? "bg-[#FF6B00] text-[#050507] shadow-lg shadow-[#FF6B00]/20"
+          : "border border-[#FF6B00]/10 bg-[#FF6B00]/5 text-muted-foreground hover:border-[#FF6B00]/20 hover:text-foreground"
       }`}
     >
       {children}
@@ -73,8 +73,8 @@ function InfluencerCard({ influencer, priority = false }: { influencer: Influenc
         <div className="absolute inset-0 bg-gradient-to-t from-[#050507] via-[#050507]/20 to-transparent" />
         
         {/* Type badge */}
-        <div className="absolute right-3 top-3 flex h-8 w-8 items-center justify-center rounded-lg border border-[#D4A853]/20 bg-[#050507]/60 backdrop-blur-sm">
-          <TypeIcon className="h-4 w-4 text-[#D4A853]" />
+        <div className="absolute right-3 top-3 flex h-8 w-8 items-center justify-center rounded-lg border border-[#FF6B00]/20 bg-[#050507]/60 backdrop-blur-sm">
+          <TypeIcon className="h-4 w-4 text-[#FF6B00]" />
         </div>
       </div>
       
@@ -117,7 +117,7 @@ export function InfluencersContent() {
         </div>
         <Link
           href="/influencers/create"
-          className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#D4A853] to-[#B8922F] px-6 py-3 text-sm font-semibold text-[#050507] shadow-lg shadow-[#D4A853]/15 transition-all hover:shadow-[#D4A853]/25"
+          className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#FF6B00] to-[#E55A00] px-6 py-3 text-sm font-semibold text-[#050507] shadow-lg shadow-[#FF6B00]/15 transition-all hover:shadow-[#FF6B00]/25"
         >
           <Plus className="h-4 w-4" />
           {t("influencersPage.createNew")}
@@ -147,10 +147,10 @@ export function InfluencersContent() {
           {/* Create new card */}
           <Link
             href="/influencers/create"
-            className="group flex aspect-[3/4] items-center justify-center rounded-2xl border-2 border-dashed border-[#D4A853]/20 bg-[#D4A853]/5 transition-all hover:border-[#D4A853]/40 hover:bg-[#D4A853]/10"
+            className="group flex aspect-[3/4] items-center justify-center rounded-2xl border-2 border-dashed border-[#FF6B00]/20 bg-[#FF6B00]/5 transition-all hover:border-[#FF6B00]/40 hover:bg-[#FF6B00]/10"
           >
-            <div className="flex flex-col items-center gap-3 text-[#D4A853]/60 transition-colors group-hover:text-[#D4A853]">
-              <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-[#D4A853]/20 bg-[#D4A853]/10">
+            <div className="flex flex-col items-center gap-3 text-[#FF6B00]/60 transition-colors group-hover:text-[#FF6B00]">
+              <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-[#FF6B00]/20 bg-[#FF6B00]/10">
                 <Plus className="h-7 w-7" />
               </div>
               <span className="text-sm font-medium">{t("influencersPage.createNew")}</span>
@@ -159,14 +159,14 @@ export function InfluencersContent() {
         </div>
       ) : (
         <div className="flex flex-col items-center justify-center py-20 text-center">
-          <div className="mb-4 flex h-20 w-20 items-center justify-center rounded-2xl border border-[#D4A853]/10 bg-[#D4A853]/5">
-            <User className="h-10 w-10 text-[#D4A853]/40" />
+          <div className="mb-4 flex h-20 w-20 items-center justify-center rounded-2xl border border-[#FF6B00]/10 bg-[#FF6B00]/5">
+            <User className="h-10 w-10 text-[#FF6B00]/40" />
           </div>
           <h3 className="text-lg font-semibold text-foreground">{t("influencersPage.noInfluencers")}</h3>
           <p className="mt-2 text-muted-foreground">{t("influencersPage.startCreating")}</p>
           <Link
             href="/influencers/create"
-            className="mt-6 inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#D4A853] to-[#B8922F] px-6 py-3 text-sm font-semibold text-[#050507]"
+            className="mt-6 inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#FF6B00] to-[#E55A00] px-6 py-3 text-sm font-semibold text-[#050507]"
           >
             <Plus className="h-4 w-4" />
             {t("influencersPage.createNew")}

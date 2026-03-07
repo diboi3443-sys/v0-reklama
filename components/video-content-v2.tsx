@@ -135,7 +135,7 @@ export function VideoContentV2() {
   return (
     <div className="mx-auto max-w-[1200px] px-6 py-10">
       {/* Mode Tabs */}
-      <div className="mb-10 flex gap-1 rounded-xl border border-[#D4A853]/5 bg-[#0c0c10]/50 p-1">
+      <div className="mb-10 flex gap-1 rounded-xl border border-[#FF6B00]/5 bg-[#0c0c10]/50 p-1">
         {modes.map((m) => (
           <button
             key={m.id}
@@ -143,7 +143,7 @@ export function VideoContentV2() {
             disabled={isProcessing}
             className={`flex-1 rounded-lg py-3 px-4 text-sm font-medium transition-all disabled:opacity-50 ${
               mode === m.id
-                ? "bg-gradient-to-r from-[#D4A853] to-[#B8922F] text-[#050507] shadow-lg shadow-[#D4A853]/15"
+                ? "bg-gradient-to-r from-[#FF6B00] to-[#E55A00] text-[#050507] shadow-lg shadow-[#FF6B00]/15"
                 : "text-muted-foreground hover:text-foreground"
             }`}
           >
@@ -159,7 +159,7 @@ export function VideoContentV2() {
           {/* Text-to-Video Mode */}
           {mode === "text-to-video" && (
             <div>
-              <label className="mb-2 block text-[11px] font-bold uppercase tracking-[0.15em] text-[#D4A853]/50">
+              <label className="mb-2 block text-[11px] font-bold uppercase tracking-[0.15em] text-[#FF6B00]/50">
                 Video Prompt
               </label>
               <textarea
@@ -168,7 +168,7 @@ export function VideoContentV2() {
                 placeholder="A cinematic shot of waves crashing on a beach at sunset..."
                 rows={6}
                 disabled={isProcessing}
-                className="w-full resize-none rounded-xl border border-[#D4A853]/10 bg-[#D4A853]/3 px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-[#D4A853]/30 focus:outline-none disabled:opacity-50"
+                className="w-full resize-none rounded-xl border border-[#FF6B00]/10 bg-[#FF6B00]/3 px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-[#FF6B00]/30 focus:outline-none disabled:opacity-50"
               />
             </div>
           )}
@@ -178,11 +178,11 @@ export function VideoContentV2() {
             <>
               {/* Image Upload */}
               <div>
-                <label className="mb-2 block text-[11px] font-bold uppercase tracking-[0.15em] text-[#D4A853]/50">
+                <label className="mb-2 block text-[11px] font-bold uppercase tracking-[0.15em] text-[#FF6B00]/50">
                   Upload Image
                 </label>
                 {!imageUrl ? (
-                  <label className="group relative flex aspect-video cursor-pointer items-center justify-center overflow-hidden rounded-xl border-2 border-dashed border-[#D4A853]/20 bg-[#D4A853]/5 transition-all hover:border-[#D4A853]/40 hover:bg-[#D4A853]/10">
+                  <label className="group relative flex aspect-video cursor-pointer items-center justify-center overflow-hidden rounded-xl border-2 border-dashed border-[#FF6B00]/20 bg-[#FF6B00]/5 transition-all hover:border-[#FF6B00]/40 hover:bg-[#FF6B00]/10">
                     <input
                       type="file"
                       accept="image/*"
@@ -195,10 +195,10 @@ export function VideoContentV2() {
                     />
                     <div className="text-center">
                       {uploadingImage ? (
-                        <Loader2 className="mx-auto h-12 w-12 animate-spin text-[#D4A853]" />
+                        <Loader2 className="mx-auto h-12 w-12 animate-spin text-[#FF6B00]" />
                       ) : (
                         <>
-                          <Upload className="mx-auto h-12 w-12 text-[#D4A853]/40" />
+                          <Upload className="mx-auto h-12 w-12 text-[#FF6B00]/40" />
                           <p className="mt-3 text-sm font-medium text-foreground">
                             Drop image or click to upload
                           </p>
@@ -210,7 +210,7 @@ export function VideoContentV2() {
                     </div>
                   </label>
                 ) : (
-                  <div className="relative aspect-video overflow-hidden rounded-xl border border-[#D4A853]/10">
+                  <div className="relative aspect-video overflow-hidden rounded-xl border border-[#FF6B00]/10">
                     <Image
                       src={imageUrl}
                       alt="Uploaded"
@@ -236,7 +236,7 @@ export function VideoContentV2() {
 
               {/* Optional Prompt */}
               <div>
-                <label className="mb-2 block text-[11px] font-bold uppercase tracking-[0.15em] text-[#D4A853]/50">
+                <label className="mb-2 block text-[11px] font-bold uppercase tracking-[0.15em] text-[#FF6B00]/50">
                   Animation Description (Optional)
                 </label>
                 <textarea
@@ -245,15 +245,15 @@ export function VideoContentV2() {
                   placeholder="Slow zoom in with cinematic lighting..."
                   rows={3}
                   disabled={isProcessing}
-                  className="w-full resize-none rounded-xl border border-[#D4A853]/10 bg-[#D4A853]/3 px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-[#D4A853]/30 focus:outline-none disabled:opacity-50"
+                  className="w-full resize-none rounded-xl border border-[#FF6B00]/10 bg-[#FF6B00]/3 px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-[#FF6B00]/30 focus:outline-none disabled:opacity-50"
                 />
               </div>
 
               {/* Selected Preset */}
               {presetData && (
-                <div className="rounded-lg border border-[#D4A853]/20 bg-[#D4A853]/10 p-4">
+                <div className="rounded-lg border border-[#FF6B00]/20 bg-[#FF6B00]/10 p-4">
                   <div className="flex items-center gap-3">
-                    <Sparkles className="h-5 w-5 text-[#D4A853]" />
+                    <Sparkles className="h-5 w-5 text-[#FF6B00]" />
                     <div>
                       <div className="font-semibold text-foreground">
                         Preset: {presetData.name}
@@ -269,10 +269,10 @@ export function VideoContentV2() {
           )}
 
           {/* Settings */}
-          <div className="space-y-4 rounded-xl border border-[#D4A853]/10 bg-[#D4A853]/5 p-4">
+          <div className="space-y-4 rounded-xl border border-[#FF6B00]/10 bg-[#FF6B00]/5 p-4">
             {/* Duration */}
             <div>
-              <label className="mb-2 block text-[11px] font-bold uppercase tracking-[0.15em] text-[#D4A853]/50">
+              <label className="mb-2 block text-[11px] font-bold uppercase tracking-[0.15em] text-[#FF6B00]/50">
                 Duration
               </label>
               <div className="flex gap-2">
@@ -283,8 +283,8 @@ export function VideoContentV2() {
                     disabled={isProcessing}
                     className={`flex-1 rounded-lg py-2 text-sm font-medium transition-all disabled:opacity-50 ${
                       duration === d
-                        ? "bg-[#D4A853] text-[#050507]"
-                        : "border border-[#D4A853]/10 bg-[#D4A853]/3 text-muted-foreground hover:border-[#D4A853]/20"
+                        ? "bg-[#FF6B00] text-[#050507]"
+                        : "border border-[#FF6B00]/10 bg-[#FF6B00]/3 text-muted-foreground hover:border-[#FF6B00]/20"
                     }`}
                   >
                     {d}s
@@ -295,7 +295,7 @@ export function VideoContentV2() {
 
             {/* Aspect Ratio */}
             <div>
-              <label className="mb-2 block text-[11px] font-bold uppercase tracking-[0.15em] text-[#D4A853]/50">
+              <label className="mb-2 block text-[11px] font-bold uppercase tracking-[0.15em] text-[#FF6B00]/50">
                 Aspect Ratio
               </label>
               <div className="flex gap-2">
@@ -306,8 +306,8 @@ export function VideoContentV2() {
                     disabled={isProcessing}
                     className={`flex-1 rounded-lg py-2 text-sm font-medium transition-all disabled:opacity-50 ${
                       aspectRatio === ar
-                        ? "bg-[#D4A853] text-[#050507]"
-                        : "border border-[#D4A853]/10 bg-[#D4A853]/3 text-muted-foreground hover:border-[#D4A853]/20"
+                        ? "bg-[#FF6B00] text-[#050507]"
+                        : "border border-[#FF6B00]/10 bg-[#FF6B00]/3 text-muted-foreground hover:border-[#FF6B00]/20"
                     }`}
                   >
                     {ar}
@@ -321,7 +321,7 @@ export function VideoContentV2() {
           <button
             onClick={handleGenerate}
             disabled={isProcessing || (mode === "image-to-video" && !imageUrl)}
-            className="w-full rounded-xl bg-gradient-to-r from-[#D4A853] to-[#B8922F] px-6 py-4 font-semibold text-[#050507] shadow-lg shadow-[#D4A853]/20 transition-all hover:shadow-[#D4A853]/30 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full rounded-xl bg-gradient-to-r from-[#FF6B00] to-[#E55A00] px-6 py-4 font-semibold text-[#050507] shadow-lg shadow-[#FF6B00]/20 transition-all hover:shadow-[#FF6B00]/30 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {isProcessing ? (
               <span className="flex items-center justify-center gap-2">
@@ -337,10 +337,10 @@ export function VideoContentV2() {
           </button>
 
           {/* Cost Info */}
-          <div className="rounded-lg border border-[#D4A853]/10 bg-[#D4A853]/5 p-3 text-xs text-muted-foreground">
+          <div className="rounded-lg border border-[#FF6B00]/10 bg-[#FF6B00]/5 p-3 text-xs text-muted-foreground">
             <div className="flex justify-between">
               <span>Cost:</span>
-              <span className="font-semibold text-[#D4A853]">5 credits</span>
+              <span className="font-semibold text-[#FF6B00]">5 credits</span>
             </div>
             {job?.metadata && (
               <div className="mt-2 flex justify-between">
@@ -357,9 +357,9 @@ export function VideoContentV2() {
         <div>
           {!currentJobId && !job ? (
             // Empty state
-            <div className="flex h-full min-h-[400px] items-center justify-center rounded-xl border border-[#D4A853]/10 bg-[#D4A853]/5">
+            <div className="flex h-full min-h-[400px] items-center justify-center rounded-xl border border-[#FF6B00]/10 bg-[#FF6B00]/5">
               <div className="text-center">
-                <Play className="mx-auto h-16 w-16 text-[#D4A853]/30" />
+                <Play className="mx-auto h-16 w-16 text-[#FF6B00]/30" />
                 <h3 className="mt-4 text-lg font-semibold text-foreground">Ready to create video</h3>
                 <p className="mt-2 text-sm text-muted-foreground">
                   {mode === "text-to-video" && "Enter a prompt to generate"}
@@ -370,14 +370,14 @@ export function VideoContentV2() {
             </div>
           ) : job?.status === 'processing' || job?.status === 'pending' ? (
             // Loading state
-            <div className="flex h-full min-h-[400px] items-center justify-center rounded-xl border border-[#D4A853]/10 bg-[#D4A853]/5">
+            <div className="flex h-full min-h-[400px] items-center justify-center rounded-xl border border-[#FF6B00]/10 bg-[#FF6B00]/5">
               <div className="text-center">
-                <Loader2 className="mx-auto h-16 w-16 animate-spin text-[#D4A853]" />
+                <Loader2 className="mx-auto h-16 w-16 animate-spin text-[#FF6B00]" />
                 <h3 className="mt-4 text-lg font-semibold text-foreground">Generating video...</h3>
                 <div className="mt-3 w-64 mx-auto">
-                  <div className="h-2 rounded-full bg-[#D4A853]/20 overflow-hidden">
+                  <div className="h-2 rounded-full bg-[#FF6B00]/20 overflow-hidden">
                     <div 
-                      className="h-full bg-[#D4A853] transition-all duration-300"
+                      className="h-full bg-[#FF6B00] transition-all duration-300"
                       style={{ width: `${job.progress}%` }}
                     />
                   </div>
@@ -405,7 +405,7 @@ export function VideoContentV2() {
                 </p>
                 <button
                   onClick={handleReset}
-                  className="mt-4 flex items-center gap-2 mx-auto rounded-lg border border-[#D4A853]/20 bg-[#D4A853]/5 px-6 py-2 text-sm font-medium text-foreground hover:bg-[#D4A853]/10"
+                  className="mt-4 flex items-center gap-2 mx-auto rounded-lg border border-[#FF6B00]/20 bg-[#FF6B00]/5 px-6 py-2 text-sm font-medium text-foreground hover:bg-[#FF6B00]/10"
                 >
                   <RefreshCw className="h-4 w-4" />
                   Try Again
@@ -419,7 +419,7 @@ export function VideoContentV2() {
                 <h3 className="text-lg font-semibold text-foreground">Video Ready!</h3>
                 <button
                   onClick={handleReset}
-                  className="flex items-center gap-2 rounded-lg border border-[#D4A853]/20 bg-[#D4A853]/5 px-4 py-2 text-sm font-medium text-foreground hover:bg-[#D4A853]/10"
+                  className="flex items-center gap-2 rounded-lg border border-[#FF6B00]/20 bg-[#FF6B00]/5 px-4 py-2 text-sm font-medium text-foreground hover:bg-[#FF6B00]/10"
                 >
                   <RefreshCw className="h-4 w-4" />
                   New Video
@@ -427,7 +427,7 @@ export function VideoContentV2() {
               </div>
 
               {/* Video Player */}
-              <div className="relative aspect-video overflow-hidden rounded-xl border border-[#D4A853]/10">
+              <div className="relative aspect-video overflow-hidden rounded-xl border border-[#FF6B00]/10">
                 <video
                   src={job.result}
                   controls
@@ -441,7 +441,7 @@ export function VideoContentV2() {
               <div className="flex gap-3">
                 <button
                   onClick={() => handleDownload(job.result!)}
-                  className="flex-1 flex items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-[#D4A853] to-[#B8922F] px-6 py-3 font-semibold text-[#050507]"
+                  className="flex-1 flex items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-[#FF6B00] to-[#E55A00] px-6 py-3 font-semibold text-[#050507]"
                 >
                   <Download className="h-4 w-4" />
                   Download Video
@@ -449,7 +449,7 @@ export function VideoContentV2() {
               </div>
 
               {/* Metadata */}
-              <div className="rounded-lg border border-[#D4A853]/10 bg-[#D4A853]/5 p-4">
+              <div className="rounded-lg border border-[#FF6B00]/10 bg-[#FF6B00]/5 p-4">
                 <div className="grid grid-cols-2 gap-4 text-sm">
                   <div>
                     <span className="text-muted-foreground">Duration:</span>
@@ -467,7 +467,7 @@ export function VideoContentV2() {
                   </div>
                   <div>
                     <span className="text-muted-foreground">Cost:</span>
-                    <span className="ml-2 font-medium text-[#D4A853]">5 credits</span>
+                    <span className="ml-2 font-medium text-[#FF6B00]">5 credits</span>
                   </div>
                 </div>
               </div>

@@ -33,7 +33,7 @@ function PaymentSuccessContent() {
         <div className="w-full max-w-md text-center">
           {status === 'loading' && (
             <>
-              <Loader2 className="mx-auto h-16 w-16 animate-spin text-[#D4A853]" />
+              <Loader2 className="mx-auto h-16 w-16 animate-spin text-[#FF6B00]" />
               <h1 className="mt-6 text-2xl font-bold text-foreground">
                 Обрабатываем платёж...
               </h1>
@@ -55,7 +55,7 @@ function PaymentSuccessContent() {
                 Ваши credits уже начислены на аккаунт
               </p>
 
-              <div className="mt-8 rounded-xl border border-[#D4A853]/10 bg-[#D4A853]/5 p-6">
+              <div className="mt-8 rounded-xl border border-[#FF6B00]/10 bg-[#FF6B00]/5 p-6">
                 <p className="text-sm text-muted-foreground">
                   Спасибо за покупку! Теперь вы можете создавать ещё больше контента.
                 </p>
@@ -63,7 +63,7 @@ function PaymentSuccessContent() {
 
               <button
                 onClick={handleContinue}
-                className="mt-8 rounded-xl bg-gradient-to-r from-[#D4A853] to-[#B8922F] px-8 py-3 font-semibold text-[#050507] shadow-lg transition-all hover:shadow-xl"
+                className="mt-8 rounded-xl bg-gradient-to-r from-[#FF6B00] to-[#E55A00] px-8 py-3 font-semibold text-[#050507] shadow-lg transition-all hover:shadow-xl"
               >
                 Начать создавать
               </button>
@@ -84,7 +84,7 @@ function PaymentSuccessContent() {
 
               <button
                 onClick={() => router.push('/pricing')}
-                className="mt-8 rounded-xl border border-[#D4A853]/20 bg-[#D4A853]/5 px-8 py-3 font-semibold text-foreground transition-all hover:bg-[#D4A853]/10"
+                className="mt-8 rounded-xl border border-[#FF6B00]/20 bg-[#FF6B00]/5 px-8 py-3 font-semibold text-foreground transition-all hover:bg-[#FF6B00]/10"
               >
                 Вернуться к тарифам
               </button>
@@ -101,7 +101,7 @@ export default function PaymentSuccessPage() {
     <Suspense fallback={
       <AppShell>
         <div className="flex min-h-[60vh] items-center justify-center">
-          <Loader2 className="h-8 w-8 animate-spin text-[#D4A853]" />
+          <Loader2 className="h-8 w-8 animate-spin text-[#FF6B00]" />
         </div>
       </AppShell>
     }>

@@ -22,9 +22,9 @@ function MenuItemCard({ item }: { item: MegaItem }) {
   return (
     <Link
       href={item.href}
-      className="group flex gap-3 rounded-xl p-3 transition-all hover:bg-[#D4A853]/5"
+      className="group flex gap-3 rounded-xl p-3 transition-all hover:bg-[#FF6B00]/5"
     >
-      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-[#D4A853]/10 bg-[#D4A853]/5 text-[#D4A853] transition-colors group-hover:border-[#D4A853]/20 group-hover:bg-[#D4A853]/10">
+      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-[#FF6B00]/10 bg-[#FF6B00]/5 text-[#FF6B00] transition-colors group-hover:border-[#FF6B00]/20 group-hover:bg-[#FF6B00]/10">
         {item.icon}
       </div>
       <div className="min-w-0">
@@ -33,7 +33,7 @@ function MenuItemCard({ item }: { item: MegaItem }) {
           {item.badge && (
             <span className={`rounded px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wider ${
               item.badge.variant === "gold"
-                ? "bg-[#D4A853]/15 text-[#D4A853]"
+                ? "bg-[#FF6B00]/15 text-[#FF6B00]"
                 : "bg-[#00D4FF]/15 text-[#00D4FF]"
             }`}>
               {item.badge.text}
@@ -49,7 +49,7 @@ function MenuItemCard({ item }: { item: MegaItem }) {
 function MenuSection({ title, items }: { title: string; items: MegaItem[] }) {
   return (
     <div>
-      <h4 className="mb-2 text-[10px] font-bold uppercase tracking-[0.15em] text-[#D4A853]/40">
+      <h4 className="mb-2 text-[10px] font-bold uppercase tracking-[0.15em] text-[#FF6B00]/40">
         {title}
       </h4>
       <div className="flex flex-col gap-0.5">
@@ -63,9 +63,9 @@ function QuickLink({ href, label }: { href: string; label: string }) {
   return (
     <Link
       href={href}
-      className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm text-muted-foreground transition-all hover:bg-[#D4A853]/5 hover:text-foreground"
+      className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm text-muted-foreground transition-all hover:bg-[#FF6B00]/5 hover:text-foreground"
     >
-      <ArrowRight className="h-3 w-3 text-[#D4A853]/40" />
+      <ArrowRight className="h-3 w-3 text-[#FF6B00]/40" />
       {label}
     </Link>
   )
@@ -95,12 +95,12 @@ export function ImageMegaMenu() {
   ]
 
   return (
-    <div className="animate-mega-menu absolute left-1/2 top-full z-50 mt-2 w-[920px] -translate-x-1/2 rounded-2xl border border-[#D4A853]/10 bg-[#0c0c10]/95 p-6 shadow-2xl shadow-black/50 backdrop-blur-2xl">
+    <div className="animate-mega-menu absolute left-1/2 top-full z-50 mt-2 w-[920px] -translate-x-1/2 rounded-2xl border border-[#FF6B00]/10 bg-[#0c0c10]/95 p-6 shadow-2xl shadow-black/50 backdrop-blur-2xl">
       <div className="grid grid-cols-3 gap-6">
         <MenuSection title={t("mega.models")} items={models} />
         <MenuSection title={t("mega.features")} items={features} />
         <div>
-          <h4 className="mb-2 text-[10px] font-bold uppercase tracking-[0.15em] text-[#D4A853]/40">{t("mega.quickLinks")}</h4>
+          <h4 className="mb-2 text-[10px] font-bold uppercase tracking-[0.15em] text-[#FF6B00]/40">{t("mega.quickLinks")}</h4>
           <div className="flex flex-col gap-0.5">
             <QuickLink href="/image" label={t("megaImage.photodump")} />
             <QuickLink href="/image" label={t("nav.moodboard")} />
@@ -134,12 +134,12 @@ export function VideoMegaMenu() {
   ]
 
   return (
-    <div className="animate-mega-menu absolute left-1/2 top-full z-50 mt-2 w-[920px] -translate-x-1/2 rounded-2xl border border-[#D4A853]/10 bg-[#0c0c10]/95 p-6 shadow-2xl shadow-black/50 backdrop-blur-2xl">
+    <div className="animate-mega-menu absolute left-1/2 top-full z-50 mt-2 w-[920px] -translate-x-1/2 rounded-2xl border border-[#FF6B00]/10 bg-[#0c0c10]/95 p-6 shadow-2xl shadow-black/50 backdrop-blur-2xl">
       <div className="grid grid-cols-3 gap-6">
         <MenuSection title={t("mega.models")} items={models} />
         <MenuSection title={t("mega.features")} items={features} />
         <div>
-          <h4 className="mb-2 text-[10px] font-bold uppercase tracking-[0.15em] text-[#D4A853]/40">{t("mega.quickLinks")}</h4>
+          <h4 className="mb-2 text-[10px] font-bold uppercase tracking-[0.15em] text-[#FF6B00]/40">{t("mega.quickLinks")}</h4>
           <div className="flex flex-col gap-0.5">
             <QuickLink href="/create/video" label={t("megaVideo.cinemaStudio")} />
             <QuickLink href="/create/video" label={t("megaVideo.motionControl")} />
@@ -168,7 +168,7 @@ export function AudioMegaMenu() {
   ]
 
   return (
-    <div className="animate-mega-menu absolute left-1/2 top-full z-50 mt-2 w-[700px] -translate-x-1/2 rounded-2xl border border-[#D4A853]/10 bg-[#0c0c10]/95 p-6 shadow-2xl shadow-black/50 backdrop-blur-2xl">
+    <div className="animate-mega-menu absolute left-1/2 top-full z-50 mt-2 w-[700px] -translate-x-1/2 rounded-2xl border border-[#FF6B00]/10 bg-[#0c0c10]/95 p-6 shadow-2xl shadow-black/50 backdrop-blur-2xl">
       <div className="grid grid-cols-2 gap-6">
         <MenuSection title={t("mega.voiceCloning")} items={voiceCloning} />
         <MenuSection title={t("mega.synthesis")} items={synthesis} />
@@ -198,7 +198,7 @@ export function EditMegaMenu() {
   ]
 
   return (
-    <div className="animate-mega-menu absolute left-1/2 top-full z-50 mt-2 w-[920px] -translate-x-1/2 rounded-2xl border border-[#D4A853]/10 bg-[#0c0c10]/95 p-6 shadow-2xl shadow-black/50 backdrop-blur-2xl">
+    <div className="animate-mega-menu absolute left-1/2 top-full z-50 mt-2 w-[920px] -translate-x-1/2 rounded-2xl border border-[#FF6B00]/10 bg-[#0c0c10]/95 p-6 shadow-2xl shadow-black/50 backdrop-blur-2xl">
       <div className="grid grid-cols-3 gap-6">
         <MenuSection title={t("mega.faceIdentity")} items={faceIdentity} />
         <MenuSection title={t("mega.videoEditing")} items={videoEditing} />
@@ -222,7 +222,7 @@ export function CharacterMegaMenu() {
   ]
 
   return (
-    <div className="animate-mega-menu absolute left-1/2 top-full z-50 mt-2 w-[480px] -translate-x-1/2 rounded-2xl border border-[#D4A853]/10 bg-[#0c0c10]/95 p-6 shadow-2xl shadow-black/50 backdrop-blur-2xl">
+    <div className="animate-mega-menu absolute left-1/2 top-full z-50 mt-2 w-[480px] -translate-x-1/2 rounded-2xl border border-[#FF6B00]/10 bg-[#0c0c10]/95 p-6 shadow-2xl shadow-black/50 backdrop-blur-2xl">
       <div className="grid grid-cols-1 gap-0.5">
         {items.map((item) => <MenuItemCard key={item.title} item={item} />)}
       </div>

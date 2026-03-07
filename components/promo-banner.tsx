@@ -10,18 +10,18 @@ export function PromoBanner() {
   if (!visible) return null
 
   return (
-    <div className="relative flex items-center justify-center gap-3 bg-gradient-to-r from-[#D4A853]/10 via-[#D4A853]/20 to-[#00D4FF]/10 px-4 py-2.5 text-sm backdrop-blur-sm">
+    <div className="relative flex items-center justify-center gap-3 bg-gradient-to-r from-[#FF6B00]/10 via-[#FF6B00]/20 to-[#00D4FF]/10 px-4 py-2.5 text-sm backdrop-blur-sm">
       <div className="absolute inset-0 bg-[#050507]/60" />
       <div className="relative flex items-center gap-3">
-        <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#D4A853]/20">
-          <Sparkles className="h-3 w-3 text-[#D4A853]" />
+        <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#FF6B00]/20">
+          <Sparkles className="h-3 w-3 text-[#FF6B00]" />
         </span>
         <span className="font-medium text-[#f0ece4]/80">
           🎁 Новые пресеты для видео — создавайте кинематографичный контент за 1 клик
         </span>
         <Link
           href="/presets"
-          className="rounded-full border border-[#D4A853]/30 bg-[#D4A853]/10 px-4 py-1 text-xs font-semibold text-[#D4A853] transition-all hover:bg-[#D4A853]/20 hover:border-[#D4A853]/50"
+          className="rounded-full border border-[#FF6B00]/30 bg-[#FF6B00]/10 px-4 py-1 text-xs font-semibold text-[#FF6B00] transition-all hover:bg-[#FF6B00]/20 hover:border-[#FF6B00]/50"
         >
           Попробовать
         </Link>

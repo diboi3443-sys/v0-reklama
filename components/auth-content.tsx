@@ -8,7 +8,7 @@ import { Sparkles, Video, Mic2, ImageIcon, ArrowRight } from "lucide-react"
 
 function SocialButton({ label, icon }: { label: string; icon: React.ReactNode }) {
   return (
-    <button className="flex w-full items-center justify-center gap-3 rounded-xl border border-[#D4A853]/10 bg-[#D4A853]/3 px-4 py-3.5 text-sm font-medium text-foreground transition-all hover:border-[#D4A853]/20 hover:bg-[#D4A853]/5">
+    <button className="flex w-full items-center justify-center gap-3 rounded-xl border border-[#FF6B00]/10 bg-[#FF6B00]/3 px-4 py-3.5 text-sm font-medium text-foreground transition-all hover:border-[#FF6B00]/20 hover:bg-[#FF6B00]/5">
       {icon}
       {label}
     </button>
@@ -76,9 +76,9 @@ export function AuthContent() {
             {features.map((f) => {
               const Icon = f.icon
               return (
-                <div key={f.title} className="flex items-start gap-4 rounded-2xl border border-[#D4A853]/10 bg-[#050507]/60 p-4 backdrop-blur-xl">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-[#D4A853]/15 bg-[#D4A853]/5">
-                    <Icon className="h-5 w-5 text-[#D4A853]" />
+                <div key={f.title} className="flex items-start gap-4 rounded-2xl border border-[#FF6B00]/10 bg-[#050507]/60 p-4 backdrop-blur-xl">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-[#FF6B00]/15 bg-[#FF6B00]/5">
+                    <Icon className="h-5 w-5 text-[#FF6B00]" />
                   </div>
                   <div>
                     <h4 className="text-sm font-semibold text-foreground">{f.title}</h4>
@@ -97,17 +97,17 @@ export function AuthContent() {
           {/* Logo */}
           <div className="mb-10 flex justify-center">
             <div className="flex items-center gap-2.5">
-              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-[#D4A853] to-[#B8922F] shadow-lg shadow-[#D4A853]/15">
+              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-[#FF6B00] to-[#E55A00] shadow-lg shadow-[#FF6B00]/15">
                 <Sparkles className="h-5 w-5 text-[#050507]" />
               </div>
               <span className="text-xl font-bold tracking-tight text-foreground">
-                Soul<span className="text-[#D4A853]">Gen</span>
+                Soul<span className="text-[#FF6B00]">Gen</span>
               </span>
             </div>
           </div>
 
           {/* Card */}
-          <div className="rounded-2xl border border-[#D4A853]/10 bg-gradient-to-b from-[#0c0c10] to-[#050507] p-8 backdrop-blur-2xl">
+          <div className="rounded-2xl border border-[#FF6B00]/10 bg-gradient-to-b from-[#0c0c10] to-[#050507] p-8 backdrop-blur-2xl">
             <h1 className="mb-8 text-center font-serif text-2xl font-bold text-foreground">
               {t("authPage.signIn")}
             </h1>
@@ -119,13 +119,13 @@ export function AuthContent() {
             </div>
 
             <div className="my-8 flex items-center gap-4">
-              <div className="h-px flex-1 bg-gradient-to-r from-transparent via-[#D4A853]/15 to-transparent" />
-              <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-[#D4A853]/40">{t("authPage.or")}</span>
-              <div className="h-px flex-1 bg-gradient-to-r from-transparent via-[#D4A853]/15 to-transparent" />
+              <div className="h-px flex-1 bg-gradient-to-r from-transparent via-[#FF6B00]/15 to-transparent" />
+              <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-[#FF6B00]/40">{t("authPage.or")}</span>
+              <div className="h-px flex-1 bg-gradient-to-r from-transparent via-[#FF6B00]/15 to-transparent" />
             </div>
 
             <div className="flex flex-col gap-4">
-              <label className="text-[11px] font-bold uppercase tracking-[0.15em] text-[#D4A853]/50">
+              <label className="text-[11px] font-bold uppercase tracking-[0.15em] text-[#FF6B00]/50">
                 {t("authPage.email")}
               </label>
               <input
@@ -133,9 +133,9 @@ export function AuthContent() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder={t("authPage.emailPlaceholder")}
-                className="rounded-xl border border-[#D4A853]/10 bg-[#D4A853]/3 px-4 py-3.5 text-sm text-foreground placeholder:text-muted-foreground focus:border-[#D4A853]/30 focus:outline-none transition-colors"
+                className="rounded-xl border border-[#FF6B00]/10 bg-[#FF6B00]/3 px-4 py-3.5 text-sm text-foreground placeholder:text-muted-foreground focus:border-[#FF6B00]/30 focus:outline-none transition-colors"
               />
-              <button className="flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#D4A853] to-[#B8922F] px-4 py-3.5 text-sm font-semibold text-[#050507] shadow-lg shadow-[#D4A853]/15 transition-all hover:shadow-[#D4A853]/25">
+              <button className="flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#FF6B00] to-[#E55A00] px-4 py-3.5 text-sm font-semibold text-[#050507] shadow-lg shadow-[#FF6B00]/15 transition-all hover:shadow-[#FF6B00]/25">
                 {t("authPage.continue")}
                 <ArrowRight className="h-4 w-4" />
               </button>
@@ -143,7 +143,7 @@ export function AuthContent() {
 
             <p className="mt-6 text-center text-sm text-muted-foreground">
               {t("authPage.noAccount")}{" "}
-              <Link href="/auth/sign-in" className="font-semibold text-[#D4A853] hover:underline">
+              <Link href="/auth/sign-in" className="font-semibold text-[#FF6B00] hover:underline">
                 {t("authPage.signUp")}
               </Link>
             </p>

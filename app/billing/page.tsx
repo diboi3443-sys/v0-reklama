@@ -85,7 +85,7 @@ export default function BillingPage() {
           </div>
           <Link
             href="/pricing"
-            className="rounded-xl bg-gradient-to-r from-[#D4A853] to-[#B8922F] px-6 py-3 font-semibold text-[#050507] shadow-lg transition-all hover:shadow-xl"
+            className="rounded-xl bg-gradient-to-r from-[#FF6B00] to-[#E55A00] px-6 py-3 font-semibold text-[#050507] shadow-lg transition-all hover:shadow-xl"
           >
             Купить credits
           </Link>
@@ -94,9 +94,9 @@ export default function BillingPage() {
         {/* Stats Grid */}
         <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
           {/* Credits */}
-          <div className="rounded-xl border border-[#D4A853]/10 bg-[#D4A853]/5 p-6">
+          <div className="rounded-xl border border-[#FF6B00]/10 bg-[#FF6B00]/5 p-6">
             <div className="flex items-center justify-between">
-              <CreditCard className="h-8 w-8 text-[#D4A853]" />
+              <CreditCard className="h-8 w-8 text-[#FF6B00]" />
             </div>
             <div className="mt-4">
               <div className="text-3xl font-bold text-foreground">
@@ -109,9 +109,9 @@ export default function BillingPage() {
           </div>
 
           {/* Tier */}
-          <div className="rounded-xl border border-[#D4A853]/10 bg-[#D4A853]/5 p-6">
+          <div className="rounded-xl border border-[#FF6B00]/10 bg-[#FF6B00]/5 p-6">
             <div className="flex items-center justify-between">
-              <TrendingUp className="h-8 w-8 text-[#D4A853]" />
+              <TrendingUp className="h-8 w-8 text-[#FF6B00]" />
             </div>
             <div className="mt-4">
               <div className="text-2xl font-bold text-foreground">
@@ -127,9 +127,9 @@ export default function BillingPage() {
           </div>
 
           {/* Subscription */}
-          <div className="rounded-xl border border-[#D4A853]/10 bg-[#D4A853]/5 p-6">
+          <div className="rounded-xl border border-[#FF6B00]/10 bg-[#FF6B00]/5 p-6">
             <div className="flex items-center justify-between">
-              <Calendar className="h-8 w-8 text-[#D4A853]" />
+              <Calendar className="h-8 w-8 text-[#FF6B00]" />
             </div>
             <div className="mt-4">
               {subscription ? (
@@ -148,7 +148,7 @@ export default function BillingPage() {
                   </div>
                   <Link
                     href="/pricing"
-                    className="mt-2 text-sm text-[#D4A853] hover:underline"
+                    className="mt-2 text-sm text-[#FF6B00] hover:underline"
                   >
                     Оформить →
                   </Link>
@@ -163,7 +163,7 @@ export default function BillingPage() {
           <h2 className="text-xl font-bold text-foreground">История платежей</h2>
 
           {payments.length === 0 ? (
-            <div className="mt-6 rounded-xl border border-[#D4A853]/10 bg-[#D4A853]/3 p-12 text-center">
+            <div className="mt-6 rounded-xl border border-[#FF6B00]/10 bg-[#FF6B00]/3 p-12 text-center">
               <p className="text-muted-foreground">Платежей пока нет</p>
             </div>
           ) : (
@@ -171,11 +171,11 @@ export default function BillingPage() {
               {payments.map((payment) => (
                 <div
                   key={payment.id}
-                  className="flex items-center justify-between rounded-xl border border-[#D4A853]/10 bg-[#D4A853]/3 p-4"
+                  className="flex items-center justify-between rounded-xl border border-[#FF6B00]/10 bg-[#FF6B00]/3 p-4"
                 >
                   <div className="flex items-center gap-4">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-[#D4A853]/20">
-                      <CreditCard className="h-6 w-6 text-[#D4A853]" />
+                    <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-[#FF6B00]/20">
+                      <CreditCard className="h-6 w-6 text-[#FF6B00]" />
                     </div>
                     <div>
                       <div className="font-semibold text-foreground">
@@ -213,7 +213,7 @@ export default function BillingPage() {
 
         {/* Manage Subscription */}
         {subscription && (
-          <div className="mt-12 rounded-xl border border-[#D4A853]/10 bg-[#D4A853]/5 p-8">
+          <div className="mt-12 rounded-xl border border-[#FF6B00]/10 bg-[#FF6B00]/5 p-8">
             <h3 className="text-lg font-bold text-foreground">
               Управление подпиской
             </h3>
@@ -225,7 +225,7 @@ export default function BillingPage() {
             <div className="mt-6 flex gap-4">
               <Link
                 href="/pricing"
-                className="rounded-lg border border-[#D4A853]/20 bg-[#D4A853]/5 px-6 py-2 text-sm font-semibold text-foreground transition-all hover:bg-[#D4A853]/10"
+                className="rounded-lg border border-[#FF6B00]/20 bg-[#FF6B00]/5 px-6 py-2 text-sm font-semibold text-foreground transition-all hover:bg-[#FF6B00]/10"
               >
                 Изменить план
               </Link>

@@ -13,7 +13,7 @@ export function LanguageSwitcher() {
   return (
     <button
       onClick={toggle}
-      className="flex items-center gap-1.5 rounded-full border border-[#D4A853]/10 bg-[#D4A853]/5 px-3 py-1.5 text-sm text-[#D4A853]/70 transition-all hover:border-[#D4A853]/25 hover:text-[#D4A853] hover:bg-[#D4A853]/10"
+      className="flex items-center gap-1.5 rounded-full border border-[#FF6B00]/10 bg-[#FF6B00]/5 px-3 py-1.5 text-sm text-[#FF6B00]/70 transition-all hover:border-[#FF6B00]/25 hover:text-[#FF6B00] hover:bg-[#FF6B00]/10"
       aria-label="Switch language"
     >
       <Globe className="h-3.5 w-3.5" />
