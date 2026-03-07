@@ -101,11 +101,5 @@ export async function POST(req: NextRequest) {
   }
 }
 
-// Configure max file size for route
-export const config = {
-  api: {
-    bodyParser: {
-      sizeLimit: '10mb',
-    },
-  },
-}
+// Note: In App Router, max body size is configured via Vercel settings or next.config.js
+// Default Vercel limit is 4.5MB for serverless functions, 10MB for Edge Runtime

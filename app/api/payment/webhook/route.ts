@@ -91,9 +91,5 @@ export async function POST(req: NextRequest) {
   }
 }
 
-// Disable body parsing for webhooks (need raw body for signature verification)
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-}
+// Note: In App Router, body parsing is handled automatically.
+// For raw body access (webhook signatures), use: await request.text() or request.arrayBuffer()

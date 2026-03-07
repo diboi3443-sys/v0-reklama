@@ -4,8 +4,12 @@ import { Auth } from '@supabase/auth-ui-react'
 import { ThemeSupa } from '@supabase/auth-ui-shared'
 import { createClient } from '@/lib/supabase-browser'
 import { useSearchParams } from 'next/navigation'
+import { Suspense } from 'react'
 
-export default function SignInPage() {
+// Force dynamic rendering (skip SSG) for auth pages
+export const dynamic = 'force-dynamic'
+
+function SignInForm() {
   const supabase = createClient()
   const searchParams = useSearchParams()
   const redirect = searchParams?.get('redirect') || '/image'
@@ -136,5 +140,17 @@ export default function SignInPage() {
         </div>
       </div>
     </div>
+  )
+}
+
+export default function SignInPage() {
+  return (
+    <Suspense fallback={
+      <div className="flex min-h-screen items-center justify-center bg-[#050507]">
+        <div className="text-[#f0ece4]/60">Загрузка...</div>
+      </div>
+    }>
+      <SignInForm />
+    </Suspense>
   )
 }
