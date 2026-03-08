@@ -56,6 +56,7 @@
     "embla-carousel-react": "8.6.0",
     "input-otp": "1.4.2",
     "ioredis": "^5.10.0",
+    "inngest": "^3.35.1",
     "lucide-react": "^0.564.0",
     "next": "16.1.6",
     "next-auth": "^5.0.0-beta.30",

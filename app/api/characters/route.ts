@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase-server";
 import { inngest } from "@/inngest/client";
 
+// Генерация видео с персонажем (AI Influencer)
 export async function POST(req: NextRequest) {
   try {
     // Auth
@@ -13,32 +14,31 @@ export async function POST(req: NextRequest) {
     }
     
     const userId = session.user.id;
-
-    // Парсим body
     const body = await req.json();
+    
     const {
+      characterId,
       prompt,
-      imageUrl, // Для image-to-video
       model = "kling",
       duration = 5,
       aspectRatio = "16:9",
     } = body;
 
-    if (!prompt && !imageUrl) {
+    if (!characterId) {
       return NextResponse.json(
-        { error: "Prompt or imageUrl is required" },
+        { error: "Character ID is required" },
         { status: 400 }
       );
     }
 
-    // Проверяем кредиты (видео дороже)
+    // Проверяем кредиты
     const { data: user } = await supabase
       .from("users")
       .select("credits")
       .eq("id", userId)
       .single();
 
-    const estimatedCost = model === "kling" ? 10 : 5;
+    const estimatedCost = 15; // Видео с персонажем дороже
 
     if (!user || user.credits < estimatedCost) {
       return NextResponse.json(
@@ -47,13 +47,12 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Создаём запись в БД
-    const { data: generation, error: genError } = await supabase
-      .from("generations")
+    // Создаём запись
+    const { data: video, error } = await supabase
+      .from("character_videos")
       .insert({
         user_id: userId,
-        type: "video",
-        mode: imageUrl ? "image-to-video" : "text-to-video",
+        character_id: characterId,
         status: "pending",
         prompt,
         model,
@@ -63,22 +62,21 @@ export async function POST(req: NextRequest) {
       .select()
       .single();
 
-    if (genError) {
-      console.error("Failed to create generation:", genError);
+    if (error) {
       return NextResponse.json(
-        { error: "Failed to create generation" },
+        { error: "Failed to create video" },
         { status: 500 }
       );
     }
 
-    // 🚀 Отправляем событие в Inngest!
+    // 🚀 Отправляем в Inngest
     await inngest.send({
-      name: "video/generate",
+      name: "character-video/generate",
       data: {
-        generationId: generation.id,
+        generationId: video.id,
         userId,
+        characterId,
         prompt,
-        imageUrl,
         model,
         duration,
         aspectRatio,
@@ -86,13 +84,13 @@ export async function POST(req: NextRequest) {
     });
 
     return NextResponse.json({
-      jobId: generation.id,
+      jobId: video.id,
       status: "pending",
-      message: "Video generation started. This may take 1-2 minutes.",
+      message: "Character video generation started",
     });
 
   } catch (error: any) {
-    console.error("Video generation API error:", error);
+    console.error("Character video generation error:", error);
     return NextResponse.json(
       { error: error.message || "Internal server error" },
       { status: 500 }
