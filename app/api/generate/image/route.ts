@@ -5,19 +5,31 @@ import { openrouter } from "@/lib/openrouter/client";
 import { getSupabase } from "@/lib/supabase";
 
 export async function POST(req: NextRequest) {
+  console.log("[API IMAGE] ========================================");
+  console.log("[API IMAGE] Starting POST request");
+  
   try {
-    const supabase = getSupabase(); // <-- ВНУТРИ функции!
+    console.log("[API IMAGE] Step 1: Getting Supabase client...");
+    const supabase = getSupabase();
+    console.log("[API IMAGE] Step 1: OK");
     
+    console.log("[API IMAGE] Step 2: Getting session...");
     const authClient = await createClient();
     const { data: { session } } = await authClient.auth.getSession();
+    console.log("[API IMAGE] Step 2: Session userId:", session?.user?.id);
     
     if (!session) {
+      console.log("[API IMAGE] ERROR: No session!");
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
     
     const userId = session.user.id;
+    console.log("[API IMAGE] Step 3: UserId:", userId);
 
+    console.log("[API IMAGE] Step 4: Parsing body...");
     const body = await req.json();
+    console.log("[API IMAGE] Step 4: Body:", JSON.stringify(body));
+    
     const {
       prompt,
       negativePrompt,
@@ -29,27 +41,33 @@ export async function POST(req: NextRequest) {
     } = body;
 
     if (!prompt) {
+      console.log("[API IMAGE] ERROR: No prompt!");
       return NextResponse.json(
         { error: "Prompt is required" },
         { status: 400 }
       );
     }
 
-    const { data: user } = await supabase
+    console.log("[API IMAGE] Step 5: Checking credits...");
+    const { data: user, error: userError } = await supabase
       .from("users")
       .select("credits")
       .eq("id", userId)
       .single();
+    
+    console.log("[API IMAGE] Step 5: User:", JSON.stringify(user), "Error:", userError?.message);
 
     const estimatedCost = 1;
 
     if (!user || user.credits < estimatedCost) {
+      console.log("[API IMAGE] ERROR: No credits! User:", JSON.stringify(user));
       return NextResponse.json(
         { error: "Insufficient credits" },
         { status: 402 }
       );
     }
 
+    console.log("[API IMAGE] Step 6: Creating generation record...");
     const { data: generation, error: genError } = await supabase
       .from("generations")
       .insert({
@@ -66,14 +84,17 @@ export async function POST(req: NextRequest) {
       .select()
       .single();
 
+    console.log("[API IMAGE] Step 6: Generation:", JSON.stringify(generation), "Error:", genError?.message);
+
     if (genError) {
-      console.error("Failed to create generation:", genError);
+      console.error("[API IMAGE] ERROR: Failed to create generation:", genError);
       return NextResponse.json(
-        { error: "Failed to create generation" },
+        { error: "Failed to create generation: " + genError.message },
         { status: 500 }
       );
     }
 
+    console.log("[API IMAGE] Step 7: Sending to Inngest...");
     await inngest.send({
       name: "image/generate",
       data: {
@@ -88,7 +109,9 @@ export async function POST(req: NextRequest) {
         cost: estimatedCost,
       },
     });
+    console.log("[API IMAGE] Step 7: Inngest event sent");
 
+    console.log("[API IMAGE] SUCCESS! Returning jobId:", generation.id);
     return NextResponse.json({
       jobId: generation.id,
       status: "pending",
@@ -96,7 +119,7 @@ export async function POST(req: NextRequest) {
     });
 
   } catch (error: any) {
-    console.error("Image generation API error:", error);
+    console.error("[API IMAGE] CRITICAL ERROR:", error);
     return NextResponse.json(
       { error: error.message || "Internal server error" },
       { status: 500 }
