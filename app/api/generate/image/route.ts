@@ -95,21 +95,33 @@ export async function POST(req: NextRequest) {
     }
 
     console.log("[API IMAGE] Step 7: Sending to Inngest...");
-    await inngest.send({
+    console.log("[API IMAGE] Event data:", JSON.stringify({
       name: "image/generate",
-      data: {
-        generationId: generation.id,
-        userId,
-        prompt,
-        model,
-        width,
-        height,
-        quality,
-        seed,
-        cost: estimatedCost,
-      },
-    });
-    console.log("[API IMAGE] Step 7: Inngest event sent");
+      generationId: generation.id,
+      userId,
+      prompt: prompt?.substring(0, 50),
+    }));
+    
+    try {
+      await inngest.send({
+        name: "image/generate",
+        data: {
+          generationId: generation.id,
+          userId,
+          prompt,
+          model,
+          width,
+          height,
+          quality,
+          seed,
+          cost: estimatedCost,
+        },
+      });
+      console.log("[API IMAGE] Step 7: Inngest event sent SUCCESSFULLY");
+    } catch (inngestError: any) {
+      console.error("[API IMAGE] Step 7: INNGEST ERROR:", inngestError);
+      throw inngestError;
+    }
 
     console.log("[API IMAGE] SUCCESS! Returning jobId:", generation.id);
     return NextResponse.json({

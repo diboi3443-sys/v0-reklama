@@ -16,11 +16,14 @@ export const generateImage = inngest.createFunction(
   },
   { event: "image/generate" },
   async ({ event, step }) => {
-    const supabase = getSupabase(); // <-- ВНУТРИ функции!
+    console.log("🚀🚀🚀 INNGEST FUNCTION STARTED! 🚀🚀🚀");
+    console.log("Event received:", JSON.stringify(event));
+    
+    const supabase = getSupabase();
     const startTime = Date.now();
     const { generationId, userId, prompt, model, width, height, quality, seed, cost } = event.data;
 
-    console.log(`[Inngest] Starting image generation: ${generationId}`);
+    console.log(`[Inngest] Starting image generation: ${generationId} for user: ${userId}`);
 
     // 1. Создаём запись в jobs
     await step.run("create-job-record", async () => {
