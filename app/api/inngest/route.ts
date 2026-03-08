@@ -6,7 +6,6 @@ import {
   generateCharacterVideo 
 } from "@/inngest/functions";
 
-// Этот роут обрабатывает ВСЕ события Inngest
 export const { GET, POST, PUT } = serve({
   client: inngest,
   functions: [
