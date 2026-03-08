@@ -103,12 +103,10 @@ export const generateImage = inngest.createFunction(
         }).eq("id", generationId);
       });
 
-      // 6. Загружаем в хранилище
-      console.log("Step 6: Uploading to storage...");
-      const storedUrl = await step.run("upload-to-storage", async () => {
-        return await uploadFromUrl(imageUrl, { userId, jobId: generationId, type: "image" });
-      });
-      console.log(`Stored: ${storedUrl}`);
+      // 6. Используем URL напрямую (без загрузки в storage)
+      console.log("Step 6: Using Replicate URL directly...");
+      const storedUrl = imageUrl;
+      console.log(`URL: ${storedUrl}`);
 
       // 7. Сохраняем результат
       const processingTime = Date.now() - startTime;
