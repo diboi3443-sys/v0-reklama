@@ -1,10 +1,9 @@
 import { inngest } from "./client";
 import { getSupabase } from "@/lib/supabase";
 import { replicate } from "@/lib/openrouter/replicate";
-import { openrouter } from "@/lib/openrouter/client";
 import { uploadFromUrl } from "@/lib/storage";
 
-// 🖼️ ГЕНЕРАЦИЯ ИЗОБРАЖЕНИЙ
+// 🖼️ ГЕНЕРАЦИЯ ИЗОБРАЖЕНИЙ через Replicate (быстрее и надёжнее)
 export const generateImage = inngest.createFunction(
   {
     id: "generate-image",
@@ -19,33 +18,25 @@ export const generateImage = inngest.createFunction(
     try {
       console.log("🔥🔥🔥 INNGEST FUNCTION STARTED! 🔥🔥🔥");
       console.log("Event name:", event.name);
-      console.log("Event data:", JSON.stringify(event.data));
       
-      console.log("Getting Supabase client...");
       const supabase = getSupabase();
-      console.log("Supabase client OK");
-      
       const startTime = Date.now();
       const { generationId, userId, prompt, model, width, height, quality, seed, cost } = event.data;
 
-      console.log(`[Inngest] Starting image generation: ${generationId} for user: ${userId}`);
+      console.log(`[Inngest] Starting image generation: ${generationId}`);
 
       // 1. Создаём запись в jobs
-      console.log("Step 1: Creating job record...");
       await step.run("create-job-record", async () => {
-        const { error } = await supabase.from("jobs").insert({
+        await supabase.from("jobs").insert({
           bull_job_id: generationId,
           generation_id: generationId,
           queue_name: "image-generation",
           status: "waiting",
           data: { prompt, model },
         });
-        if (error) console.error("Job insert error:", error);
       });
-      console.log("Step 1: OK");
 
       // 2. Обновляем статус
-      console.log("Step 2: Marking processing...");
       await step.run("mark-processing", async () => {
         await supabase.from("generations").update({
           status: "processing",
@@ -58,40 +49,68 @@ export const generateImage = inngest.createFunction(
           started_at: new Date().toISOString(),
         }).eq("generation_id", generationId);
       });
-      console.log("Step 2: OK");
 
-      // 3. Генерируем изображение
-      console.log("Step 3: Generating image with OpenRouter...");
-      const imageUrl = await step.run("generate-with-openrouter", async () => {
-        return await openrouter.generateImage({
-          prompt,
-          model: model || "black-forest-labs/flux-pro",
-          width: width || 1024,
-          height: height || 1024,
-          steps: (quality || 8) * 4,
-          seed,
+      // 3. Генерируем изображение через Replicate (FLUX)
+      console.log("Step 3: Generating image with Replicate FLUX...");
+      
+      const prediction = await step.run("generate-with-replicate", async () => {
+        return await replicate.predictions.create({
+          version: "black-forest-labs/flux-schnell", // Быстрый FLUX
+          input: {
+            prompt: prompt,
+            width: width || 1024,
+            height: height || 1024,
+            num_outputs: 1,
+            aspect_ratio: "1:1",
+            output_format: "webp",
+            output_quality: quality || 80,
+            seed: seed || Math.floor(Math.random() * 1000000),
+          },
         });
       });
-      console.log(`Step 3: OK, image URL: ${imageUrl}`);
 
-      // 4. Обновляем прогресс
-      console.log("Step 4: Updating progress...");
+      console.log(`Prediction started: ${prediction.id}`);
+
+      // 4. ПОЛЛИНГ результата (ждём генерацию)
+      console.log("Step 4: Polling for result...");
+      const result = await step.run("poll-replicate-status", async () => {
+        for (let i = 0; i < 60; i++) { // Макс 5 минут
+          const status = await replicate.predictions.get(prediction.id);
+          
+          console.log(`Poll ${i}: status=${status.status}`);
+          
+          if (status.status === "succeeded") {
+            return status;
+          }
+          
+          if (status.status === "failed") {
+            throw new Error(`Replicate failed: ${status.error}`);
+          }
+
+          // Ждём 5 секунд
+          await new Promise(resolve => setTimeout(resolve, 5000));
+        }
+        throw new Error("Timeout waiting for image generation");
+      });
+
+      const imageUrl = Array.isArray(result.output) ? result.output[0] : result.output;
+      console.log(`Image generated: ${imageUrl}`);
+
+      // 5. Обновляем прогресс
       await step.run("update-progress-50", async () => {
         await supabase.from("generations").update({
           progress: 50,
         }).eq("id", generationId);
       });
-      console.log("Step 4: OK");
 
-      // 5. Загружаем в хранилище
-      console.log("Step 5: Uploading to storage...");
+      // 6. Загружаем в хранилище
+      console.log("Step 6: Uploading to storage...");
       const storedUrl = await step.run("upload-to-storage", async () => {
         return await uploadFromUrl(imageUrl, { userId, jobId: generationId, type: "image" });
       });
-      console.log(`Step 5: OK, stored URL: ${storedUrl}`);
+      console.log(`Stored: ${storedUrl}`);
 
-      // 6. Сохраняем результат
-      console.log("Step 6: Saving result...");
+      // 7. Сохраняем результат
       const processingTime = Date.now() - startTime;
       await step.run("save-result", async () => {
         await supabase.from("generations").update({
@@ -109,20 +128,16 @@ export const generateImage = inngest.createFunction(
           completed_at: new Date().toISOString(),
         }).eq("generation_id", generationId);
       });
-      console.log("Step 6: OK");
 
-      // 7. Списываем кредиты
-      console.log("Step 7: Deducting credits...");
+      // 8. Списываем кредиты
       await step.run("deduct-credits", async () => {
         await supabase.rpc("deduct_credits", {
           user_id: userId,
           amount: cost || 1,
         });
       });
-      console.log("Step 7: OK");
 
-      // 8. Логируем использование
-      console.log("Step 8: Logging usage...");
+      // 9. Логируем
       await step.run("log-usage", async () => {
         await supabase.from("usage_logs").insert({
           user_id: userId,
@@ -130,12 +145,11 @@ export const generateImage = inngest.createFunction(
           resource_type: "generation",
           resource_id: generationId,
           credits_used: cost || 1,
-          metadata: { model, prompt },
+          metadata: { model: "flux-schnell", prompt },
         });
       });
-      console.log("Step 8: OK");
 
-      console.log(`✅✅✅ COMPLETED! Generation: ${generationId} in ${processingTime}ms`);
+      console.log(`✅ COMPLETED! Generation: ${generationId}`);
 
       return {
         success: true,
@@ -152,7 +166,7 @@ export const generateImage = inngest.createFunction(
   }
 );
 
-// 🎬 ГЕНЕРАЦИЯ ВИДЕО
+// 🎬 ГЕНЕРАЦИЯ ВИДЕО (остаётся через Replicate)
 export const generateVideo = inngest.createFunction(
   {
     id: "generate-video",
