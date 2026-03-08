@@ -1,4 +1,6 @@
-import { supabase } from '../supabase'
+import { getSupabase } from '../supabase'
+
+const supabase = getSupabase()
 
 const STORAGE_BUCKET = process.env.STORAGE_BUCKET || 'higgsfield-media'
 
