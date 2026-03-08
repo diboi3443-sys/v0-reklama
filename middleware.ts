@@ -2,6 +2,11 @@ import { createServerClient, type CookieOptions } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
 
 export async function middleware(request: NextRequest) {
+  // Пропускаем /api/inngest для Inngest webhook
+  if (request.nextUrl.pathname === '/api/inngest') {
+    return NextResponse.next({ request })
+  }
+
   let response = NextResponse.next({
     request,
   })
@@ -29,9 +34,10 @@ export async function middleware(request: NextRequest) {
 
   const isAuthPage = request.nextUrl.pathname.startsWith('/auth')
   const isPublicPage = request.nextUrl.pathname === '/' || 
-                       request.nextUrl.pathname.startsWith('/presets')
+                       request.nextUrl.pathname.startsWith('/presets') ||
+                       request.nextUrl.pathname.startsWith('/api/')
 
-  // Allow public pages
+  // Allow public pages and API routes
   if (isPublicPage) {
     return response
   }
