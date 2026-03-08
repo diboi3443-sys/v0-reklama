@@ -2,6 +2,10 @@ import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase-server";
 import { inngest } from "@/inngest/client";
 import { openrouter } from "@/lib/openrouter/client";
+import { getSupabase } from "@/lib/supabase";
+
+// Для обратной совместимости
+const supabase = getSupabase();
 
 export async function POST(req: NextRequest) {
   try {
@@ -87,6 +91,7 @@ export async function POST(req: NextRequest) {
         height,
         quality,
         seed,
+        cost: estimatedCost, // Передаём стоимость
       },
     });
 

@@ -1,11 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase-server";
 import { inngest } from "@/inngest/client";
+import { getSupabase } from "@/lib/supabase";
 
-// Генерация видео с персонажем (AI Influencer)
+const supabase = getSupabase();
+
 export async function POST(req: NextRequest) {
   try {
-    // Auth
     const authClient = await createClient();
     const { data: { session } } = await authClient.auth.getSession();
     
@@ -31,14 +32,13 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Проверяем кредиты
     const { data: user } = await supabase
       .from("users")
       .select("credits")
       .eq("id", userId)
       .single();
 
-    const estimatedCost = 15; // Видео с персонажем дороже
+    const estimatedCost = 15;
 
     if (!user || user.credits < estimatedCost) {
       return NextResponse.json(
@@ -47,7 +47,6 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Создаём запись
     const { data: video, error } = await supabase
       .from("character_videos")
       .insert({
@@ -69,7 +68,6 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // 🚀 Отправляем в Inngest
     await inngest.send({
       name: "character-video/generate",
       data: {
@@ -80,6 +78,7 @@ export async function POST(req: NextRequest) {
         model,
         duration,
         aspectRatio,
+        cost: estimatedCost,
       },
     });
 
