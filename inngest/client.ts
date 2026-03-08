@@ -1,7 +1,6 @@
 import { Inngest } from "inngest";
 
 // Inngest API ключи
-// Получить можно на https://app.inngest.com/
 export const inngest = new Inngest({
   id: "v0-reklama",
   eventKey: process.env.INNGEST_EVENT_KEY || "AW1fekapW7zfQJ6_L0tH2wX-NTdlMl0GPcjjsWOR4Ardr_VwM313se8UnGVa2YXntub7ga9ilHqN6mrB5oHE9A",
