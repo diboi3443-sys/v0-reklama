@@ -22,7 +22,6 @@ export async function GET(
       .from("generations")
       .select("*")
       .eq("id", id)
-      .eq("user_id", session.user.id)
       .single();
 
     if (error || !generation) {
