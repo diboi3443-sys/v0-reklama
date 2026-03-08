@@ -1,6 +1,6 @@
 import { inngest } from "./client";
 import { supabase } from "@/lib/supabase";
-import { replicate } from "@/lib/replicate";
+import { replicate } from "@/lib/openrouter/replicate";
 import { openrouter } from "@/lib/openrouter/client";
 
 // 🖼️ ГЕНЕРАЦИЯ ИЗОБРАЖЕНИЙ
