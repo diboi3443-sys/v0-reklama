@@ -108,45 +108,39 @@ export const generateImage = inngest.createFunction(
       const storedUrl = imageUrl;
       console.log(`URL: ${storedUrl}`);
 
-      // 7. Сохраняем результат
+      // 7. Сохраняем результат (ПРЯМОЙ ВЫЗОВ без step.run)
       const processingTime = Date.now() - startTime;
-      console.log("Step 7: Saving result...");
-      try {
-        await step.run("save-result", async () => {
-          console.log("Updating generations table...");
-          const { error: genError } = await supabase.from("generations").update({
-            status: "completed",
-            progress: 100,
-            result_url: storedUrl,
-            result_urls: [storedUrl],
-            completed_at: new Date().toISOString(),
-            processing_time_ms: processingTime,
-          }).eq("id", generationId);
-          
-          if (genError) {
-            console.error("Generations update error:", genError);
-            throw genError;
-          }
-          console.log("Generations updated OK");
-
-          console.log("Updating jobs table...");
-          const { error: jobError } = await supabase.from("jobs").update({
-            status: "completed",
-            result: { url: storedUrl },
-            completed_at: new Date().toISOString(),
-          }).eq("generation_id", generationId);
-          
-          if (jobError) {
-            console.error("Jobs update error:", jobError);
-            throw jobError;
-          }
-          console.log("Jobs updated OK");
-        });
-        console.log("Step 7: OK");
-      } catch (saveError: any) {
-        console.error("Step 7 ERROR:", saveError.message);
-        throw saveError;
+      console.log("Step 7: Saving result DIRECTLY...");
+      
+      console.log("Updating generations...");
+      const { data: genData, error: genError } = await supabase.from("generations").update({
+        status: "completed",
+        progress: 100,
+        result_url: storedUrl,
+        result_urls: [storedUrl],
+        completed_at: new Date().toISOString(),
+        processing_time_ms: processingTime,
+      }).eq("id", generationId).select();
+      
+      if (genError) {
+        console.error("❌ Generations error:", genError);
+        throw genError;
       }
+      console.log("✅ Generations updated:", genData);
+
+      console.log("Updating jobs...");
+      const { data: jobData, error: jobError } = await supabase.from("jobs").update({
+        status: "completed",
+        result: { url: storedUrl },
+        completed_at: new Date().toISOString(),
+      }).eq("generation_id", generationId).select();
+      
+      if (jobError) {
+        console.error("❌ Jobs error:", jobError);
+        throw jobError;
+      }
+      console.log("✅ Jobs updated:", jobData);
+      console.log("Step 7: COMPLETED");
 
       // 8. Списываем кредиты
       await step.run("deduct-credits", async () => {
