@@ -3,10 +3,10 @@ import { createClient } from "@/lib/supabase-server";
 import { inngest } from "@/inngest/client";
 import { getSupabase } from "@/lib/supabase";
 
-const supabase = getSupabase();
-
 export async function POST(req: NextRequest) {
   try {
+    const supabase = getSupabase(); // <-- ВНУТРИ функции!
+    
     const authClient = await createClient();
     const { data: { session } } = await authClient.auth.getSession();
     

@@ -3,16 +3,14 @@ import { createClient } from "@/lib/supabase-server";
 import { replicate } from "@/lib/openrouter/replicate";
 import { getSupabase } from "@/lib/supabase";
 
-const supabase = getSupabase();
-
 export async function GET(
   req: NextRequest,
   { params }: { params: { id: string } }
 ) {
   try {
+    const supabase = getSupabase(); // <-- ВНУТРИ функции!
     const { id } = params;
     
-    // Auth
     const authClient = await createClient();
     const { data: { session } } = await authClient.auth.getSession();
     
@@ -20,7 +18,6 @@ export async function GET(
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    // Получаем генерацию
     const { data: generation, error } = await supabase
       .from("generations")
       .select("*")
@@ -35,13 +32,11 @@ export async function GET(
       );
     }
 
-    // Если есть prediction_id и статус pending/processing — проверяем у Replicate
     if (generation.prediction_id && 
         (generation.status === "pending" || generation.status === "processing")) {
       try {
         const prediction = await replicate.predictions.get(generation.prediction_id);
         
-        // Обновляем статус если изменился
         if (prediction.status !== generation.status && prediction.status !== "starting") {
           const update: any = { status: prediction.status };
           
@@ -60,8 +55,6 @@ export async function GET(
           }
 
           await supabase.from("generations").update(update).eq("id", id);
-          
-          // Обновляем объект для ответа
           Object.assign(generation, update);
         }
       } catch (e) {

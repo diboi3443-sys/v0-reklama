@@ -1,7 +1,5 @@
 import { getSupabase } from '../supabase'
 
-const supabase = getSupabase()
-
 const STORAGE_BUCKET = process.env.STORAGE_BUCKET || 'higgsfield-media'
 
 export interface UploadOptions {
@@ -18,6 +16,7 @@ export async function uploadToStorage(
   buffer: Buffer,
   options: UploadOptions
 ): Promise<string> {
+  const supabase = getSupabase() // <-- ВНУТРИ функции!
   const { userId, jobId, type, contentType } = options
   
   // Generate unique filename
@@ -74,6 +73,7 @@ export async function uploadFromUrl(
  * Delete file from storage
  */
 export async function deleteFromStorage(filePath: string): Promise<void> {
+  const supabase = getSupabase() // <-- ВНУТРИ функции!
   const { error } = await supabase.storage
     .from(STORAGE_BUCKET)
     .remove([filePath])
@@ -87,6 +87,7 @@ export async function deleteFromStorage(filePath: string): Promise<void> {
  * Ensure storage bucket exists (create if not)
  */
 async function ensureBucket(): Promise<void> {
+  const supabase = getSupabase() // <-- ВНУТРИ функции!
   const { data: buckets } = await supabase.storage.listBuckets()
   
   const bucketExists = buckets?.some(b => b.name === STORAGE_BUCKET)

@@ -4,9 +4,6 @@ import { replicate } from "@/lib/openrouter/replicate";
 import { openrouter } from "@/lib/openrouter/client";
 import { uploadFromUrl } from "@/lib/storage";
 
-// Для обратной совместимости
-const supabase = getSupabase();
-
 // 🖼️ ГЕНЕРАЦИЯ ИЗОБРАЖЕНИЙ
 export const generateImage = inngest.createFunction(
   {
@@ -19,6 +16,7 @@ export const generateImage = inngest.createFunction(
   },
   { event: "image/generate" },
   async ({ event, step }) => {
+    const supabase = getSupabase(); // <-- ВНУТРИ функции!
     const startTime = Date.now();
     const { generationId, userId, prompt, model, width, height, quality, seed, cost } = event.data;
 
@@ -136,6 +134,7 @@ export const generateVideo = inngest.createFunction(
   },
   { event: "video/generate" },
   async ({ event, step }) => {
+    const supabase = getSupabase(); // <-- ВНУТРИ функции!
     const startTime = Date.now();
     const { generationId, userId, prompt, imageUrl, model, duration, aspectRatio, cost } = event.data;
 
@@ -292,6 +291,7 @@ export const generateCharacterVideo = inngest.createFunction(
   },
   { event: "character-video/generate" },
   async ({ event, step }) => {
+    const supabase = getSupabase(); // <-- ВНУТРИ функции!
     const startTime = Date.now();
     const { generationId, userId, characterId, prompt, model, duration, aspectRatio } = event.data;
 

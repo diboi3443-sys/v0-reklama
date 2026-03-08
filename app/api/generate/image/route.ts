@@ -4,12 +4,10 @@ import { inngest } from "@/inngest/client";
 import { openrouter } from "@/lib/openrouter/client";
 import { getSupabase } from "@/lib/supabase";
 
-// Для обратной совместимости
-const supabase = getSupabase();
-
 export async function POST(req: NextRequest) {
   try {
-    // Auth
+    const supabase = getSupabase(); // <-- ВНУТРИ функции!
+    
     const authClient = await createClient();
     const { data: { session } } = await authClient.auth.getSession();
     
@@ -19,7 +17,6 @@ export async function POST(req: NextRequest) {
     
     const userId = session.user.id;
 
-    // Парсим body
     const body = await req.json();
     const {
       prompt,
@@ -38,14 +35,13 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Проверяем кредиты
     const { data: user } = await supabase
       .from("users")
       .select("credits")
       .eq("id", userId)
       .single();
 
-    const estimatedCost = 1; // 1 кредит за изображение
+    const estimatedCost = 1;
 
     if (!user || user.credits < estimatedCost) {
       return NextResponse.json(
@@ -54,7 +50,6 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Создаём запись в БД
     const { data: generation, error: genError } = await supabase
       .from("generations")
       .insert({
@@ -79,7 +74,6 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // 🚀 Отправляем событие в Inngest!
     await inngest.send({
       name: "image/generate",
       data: {
@@ -91,7 +85,7 @@ export async function POST(req: NextRequest) {
         height,
         quality,
         seed,
-        cost: estimatedCost, // Передаём стоимость
+        cost: estimatedCost,
       },
     });
 
